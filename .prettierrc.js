@@ -1,1 +1,1 @@
-module.exports = require("@limitlesspc/prettier-config");
+export { default } from "@limitlesspc/prettier-config";

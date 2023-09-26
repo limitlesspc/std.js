@@ -1,1 +1,1 @@
-module.exports = require("@limitlesspc/xo-config");
+export { default } from "@limitlesspc/xo-config";
