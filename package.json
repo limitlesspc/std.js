@@ -1,6 +1,6 @@
 {
   "name": "@limitlesspc/std",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "devDependencies": {
     "@limitlesspc/prettier-config": "^1.1.0",
     "@limitlesspc/xo-config": "^1.5.0",
@@ -79,6 +79,11 @@
       "import": "./dist/random.mjs",
       "require": "./dist/random.cjs",
       "types": "./dist/random.d.ts"
+    },
+    "./stats": {
+      "import": "./dist/stats.mjs",
+      "require": "./dist/stats.cjs",
+      "types": "./dist/stats.d.ts"
     },
     "./types": {
       "import": "./dist/types.mjs",
