@@ -1,6 +1,6 @@
 {
   "name": "@limitlesspc/std",
-  "version": "0.10.2",
+  "version": "0.11.0",
   "devDependencies": {
     "@limitlesspc/prettier-config": "^1.1.0",
     "@limitlesspc/xo-config": "^1.5.0",
