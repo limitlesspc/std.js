@@ -1,5 +1,5 @@
 import { dual } from "../fn";
-import { type Repeat } from "../types";
+import type { Repeat } from "../types";
 import { map } from "./map";
 import { range } from "./range";
 

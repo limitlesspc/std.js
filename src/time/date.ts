@@ -5,14 +5,27 @@ export function addDuration(
   { years, days, months, hours, minutes, seconds, milliseconds }: DurationLike,
 ) {
   const newDate = new Date(date);
-  if (years) newDate.setFullYear(newDate.getFullYear() + years);
-  if (months) newDate.setMonth(newDate.getMonth() + months);
-  if (days) newDate.setDate(newDate.getDate() + days);
-  if (hours) newDate.setHours(newDate.getHours() + hours);
-  if (minutes) newDate.setMinutes(newDate.getMinutes() + minutes);
-  if (seconds) newDate.setSeconds(newDate.getSeconds() + seconds);
-  if (milliseconds)
+  if (years) {
+    newDate.setFullYear(newDate.getFullYear() + years);
+  }
+  if (months) {
+    newDate.setMonth(newDate.getMonth() + months);
+  }
+  if (days) {
+    newDate.setDate(newDate.getDate() + days);
+  }
+  if (hours) {
+    newDate.setHours(newDate.getHours() + hours);
+  }
+  if (minutes) {
+    newDate.setMinutes(newDate.getMinutes() + minutes);
+  }
+  if (seconds) {
+    newDate.setSeconds(newDate.getSeconds() + seconds);
+  }
+  if (milliseconds) {
     newDate.setMilliseconds(newDate.getMilliseconds() + milliseconds);
+  }
   return newDate;
 }
 
@@ -21,14 +34,27 @@ export function subtractDuration(
   { years, days, months, hours, minutes, seconds, milliseconds }: DurationLike,
 ) {
   const newDate = new Date(date);
-  if (years) newDate.setFullYear(newDate.getFullYear() - years);
-  if (days) newDate.setDate(newDate.getDate() - days);
-  if (months) newDate.setMonth(newDate.getMonth() - months);
-  if (hours) newDate.setHours(newDate.getHours() - hours);
-  if (minutes) newDate.setMinutes(newDate.getMinutes() - minutes);
-  if (seconds) newDate.setSeconds(newDate.getSeconds() - seconds);
-  if (milliseconds)
+  if (years) {
+    newDate.setFullYear(newDate.getFullYear() - years);
+  }
+  if (days) {
+    newDate.setDate(newDate.getDate() - days);
+  }
+  if (months) {
+    newDate.setMonth(newDate.getMonth() - months);
+  }
+  if (hours) {
+    newDate.setHours(newDate.getHours() - hours);
+  }
+  if (minutes) {
+    newDate.setMinutes(newDate.getMinutes() - minutes);
+  }
+  if (seconds) {
+    newDate.setSeconds(newDate.getSeconds() - seconds);
+  }
+  if (milliseconds) {
     newDate.setMilliseconds(newDate.getMilliseconds() - milliseconds);
+  }
   return newDate;
 }
 

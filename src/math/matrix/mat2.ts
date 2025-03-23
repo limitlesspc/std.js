@@ -1,4 +1,4 @@
-import { type int } from "../../types";
+import type { int } from "../../types";
 import { closeTo } from "../funcs";
 
 export type Mat2Like =
@@ -32,9 +32,11 @@ export class Mat2 extends Float32Array {
 
   eq(m: ReadonlyMat2Like, precision?: int): boolean {
     for (let i = 0; i < 4; i++) {
-      const a = this[i]!;
-      const b = m[i]!;
-      if (!closeTo(a, b, precision)) return false;
+      const a = this[i];
+      const b = m[i];
+      if (!closeTo(a, b, precision)) {
+        return false;
+      }
     }
 
     return true;
@@ -42,7 +44,7 @@ export class Mat2 extends Float32Array {
 
   add(m: ReadonlyMat2Like): this {
     for (let i = 0; i < 4; i++) {
-      this[i] += m[i]!;
+      this[i] += m[i];
     }
 
     return this;
@@ -54,7 +56,7 @@ export class Mat2 extends Float32Array {
 
   sub(m: ReadonlyMat2Like): this {
     for (let i = 0; i < 4; i++) {
-      this[i] -= m[i]!;
+      this[i] -= m[i];
     }
 
     return this;

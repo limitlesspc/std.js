@@ -1,5 +1,5 @@
-import { assert, test } from "vitest";
 import { Mat3, mat3 } from "./mat3";
+import { assert, test } from "vitest";
 
 const a = mat3([10, 20, 10, 4, 5, 6, 2, 3, 5]);
 const b = mat3([3, 2, 4, 3, 3, 9, 4, 4, 2]);

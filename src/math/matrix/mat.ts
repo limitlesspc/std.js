@@ -2,7 +2,7 @@ import { pipe } from "../../fn";
 import { chunk, collect } from "../../iter";
 import { repeat } from "../../iter/repeat";
 import { random } from "../../random";
-import { type uint } from "../../types";
+import type { uint } from "../../types";
 import { closeTo } from "../funcs";
 
 /** @unstable */
@@ -50,19 +50,25 @@ export class Mat extends Float32Array {
   }
 
   eq(m: Mat, precision?: uint): boolean {
-    if (this.rows !== m.rows || this.cols !== m.cols) return false;
+    if (this.rows !== m.rows || this.cols !== m.cols) {
+      return false;
+    }
 
     for (let i = 0, { length } = this; i < length; i++) {
-      const a = this[i]!;
-      const b = m[i]!;
-      if (!closeTo(a, b, precision)) return false;
+      const a = this[i];
+      const b = m[i];
+      if (!closeTo(a, b, precision)) {
+        return false;
+      }
     }
 
     return true;
   }
 
   add(m: Mat): this {
-    if (this.rows !== m.rows || this.cols !== m.cols) return this;
+    if (this.rows !== m.rows || this.cols !== m.cols) {
+      return this;
+    }
 
     for (let i = 0, { length } = this; i < length; i++) {
       this[i] += m[i] || 0;
@@ -76,7 +82,9 @@ export class Mat extends Float32Array {
   }
 
   sub(m: Mat): this {
-    if (this.rows !== m.rows || this.cols !== m.cols) return this;
+    if (this.rows !== m.rows || this.cols !== m.cols) {
+      return this;
+    }
 
     for (let i = 0, { length } = this; i < length; i++) {
       this[i] -= m[i] || 0;
@@ -141,6 +149,8 @@ export class Mat extends Float32Array {
 export function mat(rows: uint, cols: uint): Mat;
 export function mat(mat: number[][]): Mat;
 export function mat(rows: uint | number[][], cols = 1) {
-  if (typeof rows === "number") return new Mat(rows, cols);
+  if (typeof rows === "number") {
+    return new Mat(rows, cols);
+  }
   return new Mat(rows);
 }

@@ -4,7 +4,7 @@
  */
 
 import { swap, unorderedRemove } from "./array";
-import { type int, type uint } from "./types";
+import type { int, uint } from "./types";
 
 /**
  * Returns a random number from 0 to a maximum non-inclusive
@@ -18,8 +18,12 @@ export function random(max?: number): number;
  */
 export function random(min?: number, max?: number): number;
 export function random(min?: number, max?: number) {
-  if (!min) return Math.random();
-  if (!max) return Math.random() * min;
+  if (!min) {
+    return Math.random();
+  }
+  if (!max) {
+    return Math.random() * min;
+  }
   const Min = Math.min(min, max);
   return (Math.max(min, max) - Min) * Math.random() + Min;
 }
@@ -36,7 +40,9 @@ export function randomInt(max?: int): int;
  */
 export function randomInt(min: int, max: int): int;
 export function randomInt(min = 0, max?: int) {
-  if (typeof max === "number") return Math.floor(random(min, max + 1));
+  if (typeof max === "number") {
+    return Math.floor(random(min, max + 1));
+  }
   return Math.floor(random(min + 1));
 }
 
@@ -58,7 +64,7 @@ export function shuffle<T extends ArrayLike<unknown>>(array: T): T {
  * Chooses a random character from a string
  * @param string
  */
-export function choice<T>(string: string): string;
+export function choice(string: string): string;
 /**
  * Chooses a random item from an array
  * @param array
@@ -81,9 +87,11 @@ export function choices<T>(array: ArrayLike<T>, n: uint): T[];
  * @param n number of characters to pick
  * @returns a string of the random chars
  */
-export function choices<T>(string: string, n: uint): string;
+export function choices(string: string, n: uint): string;
 export function choices<T>(array: ArrayLike<T>, n: uint): T[] | string {
-  if (!array.length || !n) return [];
+  if (!array.length || !n) {
+    return [];
+  }
   if (typeof array === "string") {
     let result = "";
     for (let i = 0; i < n; i++) {
@@ -94,7 +102,7 @@ export function choices<T>(array: ArrayLike<T>, n: uint): T[] | string {
   }
 
   return Array.from<T>({ length: n }).map(
-    () => array[randomInt(array.length - 1)]!,
+    () => array[randomInt(array.length - 1)],
   );
 }
 
@@ -110,7 +118,9 @@ export function sample<T>(array: ArrayLike<T> & Iterable<T>, n: uint): T[] {
   for (let i = 0; i < n; i++) {
     const index = randomInt(copy.length - 1);
     const item = unorderedRemove(copy, index);
-    if (item) result[i] = item;
+    if (item) {
+      result[i] = item;
+    }
   }
 
   return result;

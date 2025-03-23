@@ -10,7 +10,9 @@ export const some: {
   <T>(predicate: (item: T) => unknown): (iter: Iterable<T>) => boolean;
 } = dual(<T>(iter: Iterable<T>, predicate: (item: T) => unknown) => {
   for (const item of iter) {
-    if (predicate(item)) return true;
+    if (predicate(item)) {
+      return true;
+    }
   }
 
   return false;

@@ -1,6 +1,6 @@
-import { expectTypeOf, test } from "vitest";
 import { range } from "./range";
 import { tee } from "./tee";
+import { expectTypeOf, test } from "vitest";
 
 test("n: 0", () => {
   const iter = range(0);

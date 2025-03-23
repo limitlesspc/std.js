@@ -1,6 +1,6 @@
 import { swap } from "../../array";
-import { type Compare } from "../../cmp";
-import { uint } from "../../types";
+import type { Compare } from "../../cmp";
+import type { uint } from "../../types";
 
 /**
  * ## Binary Heap
@@ -25,7 +25,9 @@ export class Heap<T> implements Iterable<T> {
     if (heapify) {
       this.data = [];
       this.push(...data);
-    } else this.data = data;
+    } else {
+      this.data = data;
+    }
   }
 
   get length(): uint {
@@ -64,7 +66,7 @@ export class Heap<T> implements Iterable<T> {
 
   /**
    * Inserts values into the heap and makes sure the first value is the min/max
-   * @param value
+   * @param values
    * @returns The new length of the heap
    */
   push(...values: T[]): uint {
@@ -73,7 +75,7 @@ export class Heap<T> implements Iterable<T> {
       data.push(value);
       let i = data.length - 1;
       let parent = Math.floor((i - 1) / 2);
-      while (i > 0 && compare(data[i]!, data[parent]!) < 0) {
+      while (i > 0 && compare(data[i], data[parent]) < 0) {
         swap(data, i, parent);
         i = parent;
         parent = Math.floor((i - 1) / 2);
@@ -98,10 +100,10 @@ export class Heap<T> implements Iterable<T> {
     const left = 2 * i + 1;
     const right = 2 * i + 2;
     let largest = i;
-    if (left < length && compare(data[left]!, data[largest]!) < 0) {
+    if (left < length && compare(data[left], data[largest]) < 0) {
       largest = left;
     }
-    if (right < length && compare(data[right]!, data[largest]!) < 0) {
+    if (right < length && compare(data[right], data[largest]) < 0) {
       largest = right;
     }
     if (largest !== i) {

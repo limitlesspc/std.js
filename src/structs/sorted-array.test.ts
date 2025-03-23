@@ -1,7 +1,7 @@
-import { expect, test } from "vitest";
 import { range } from "../iter";
 import { shuffle } from "../random";
 import { SortedArray } from "./sorted-array";
+import { expect, test } from "vitest";
 
 test("push() keeps sorted order", () => {
   const array = [...range(100)];

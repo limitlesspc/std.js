@@ -1,4 +1,3 @@
-import { expect, test } from "vitest";
 import {
   changes,
   difference,
@@ -8,6 +7,7 @@ import {
   swap,
   union,
 } from "./array";
+import { expect, test } from "vitest";
 
 test("swap", () => {
   const array = [1, 2, 3, 4, 5];

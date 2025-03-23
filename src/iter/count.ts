@@ -1,4 +1,4 @@
-import { uint } from "../types";
+import type { uint } from "../types";
 
 /**
  * Counts the number of values from an iterable

@@ -1,6 +1,6 @@
-import { expect, test } from "vitest";
 import { chain } from "./chain";
 import { range } from "./range";
+import { expect, test } from "vitest";
 
 test("range(5) + range(10)", () => {
   const iter1 = range(5);

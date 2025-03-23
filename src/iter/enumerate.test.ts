@@ -1,6 +1,6 @@
-import { expect, test } from "vitest";
 import { enumerate } from "./enumerate";
 import { range } from "./range";
+import { expect, test } from "vitest";
 
 test("contains correct indices", () => {
   const iter = range(2, 7);

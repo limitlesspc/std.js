@@ -6,7 +6,7 @@
 import { pipe } from "./fn";
 import { pick } from "./iter";
 import { sum } from "./stats";
-import { type AnyRecord, uint } from "./types";
+import type { AnyRecord, uint } from "./types";
 
 type Unsubscribe = () => void;
 
@@ -17,7 +17,9 @@ export class EventEmitter<Events extends AnyRecord = AnyRecord> {
   >();
 
   listenersCount(event?: keyof Events): uint {
-    if (event) return this.events.get(event)?.size || 0;
+    if (event) {
+      return this.events.get(event)?.size || 0;
+    }
     return pipe(this.events.values(), pick("size"), sum);
   }
 
@@ -74,8 +76,11 @@ export class EventEmitter<Events extends AnyRecord = AnyRecord> {
   }
 
   removeAllListeners(event?: keyof Events): this {
-    if (event) this.events.delete(event);
-    else this.events.clear();
+    if (event) {
+      this.events.delete(event);
+    } else {
+      this.events.clear();
+    }
     return this;
   }
 }

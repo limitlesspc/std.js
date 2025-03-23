@@ -1,5 +1,5 @@
 import { swap } from "../array";
-import { type uint } from "../types";
+import type { uint } from "../types";
 
 /**
  * ## Unordered Array
@@ -52,7 +52,9 @@ export class UnorderedArray<T> extends Array<T> {
         removed = this.removeIndex(start);
       }
 
-      if (removed) spliced.push(removed);
+      if (removed) {
+        spliced.push(removed);
+      }
     }
 
     return spliced;

@@ -1,5 +1,5 @@
 import { addDuration, since, subtractDuration, until } from "./date";
-import { type DurationLike } from "./duration";
+import type { DurationLike } from "./duration";
 
 /** @unstable */
 export class PlainDate {
@@ -14,9 +14,9 @@ export class PlainDate {
   }
   static fromString(str: string) {
     const [yearStr, monthStr, dayStr] = str.split("-");
-    const year = parseInt(yearStr);
-    const month = parseInt(monthStr);
-    const day = parseInt(dayStr);
+    const year = Number.parseInt(yearStr);
+    const month = Number.parseInt(monthStr);
+    const day = Number.parseInt(dayStr);
     return new PlainDate(year, month, day);
   }
 

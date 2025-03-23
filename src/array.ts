@@ -5,7 +5,7 @@
 
 import { ascend, type Compare } from "./cmp";
 import { zip } from "./iter";
-import { type Indexable, type MaybeArray } from "./types";
+import type { Indexable, MaybeArray } from "./types";
 
 /**
  * Switches the positions of two values in an array in-place
@@ -20,7 +20,7 @@ import { type Indexable, type MaybeArray } from "./types";
  * ```
  */
 export function swap<T>(array: Indexable<T>, i: number, j: number): void {
-  const temp = array[i]!;
+  const temp = array[i];
   array[i] = array[j]!;
   array[j] = temp;
 }
@@ -41,7 +41,9 @@ export function swap<T>(array: Indexable<T>, i: number, j: number): void {
  */
 export function remove<T>(array: T[], item: T): boolean {
   const index = array.indexOf(item);
-  if (index === -1) return false;
+  if (index === -1) {
+    return false;
+  }
   array.splice(index, 1);
   return true;
 }
@@ -76,14 +78,16 @@ export function unorderedRemove<T>(array: T[], index: number): T | undefined {
  */
 export function intersection<T>(...arrays: ReadonlyArray<readonly T[]>): T[] {
   const [first, ...rest] = arrays;
-  if (!first) return [];
+  if (!first) {
+    return [];
+  }
   return first.filter(item => rest.every(array => array.includes(item)));
 }
 
 /**
  * Returns an array containing items found in the second array that are not in the first
- * @param array1
- * @param array2
+ * @param oldArray
+ * @param newArray
  * @example
  * ```ts
  * console.log(added([1, 2, 3], [2, 3, 4])); // [4]
@@ -99,8 +103,8 @@ export function added<T, U>(
 
 /**
  * Returns an array containing items found in the first array that are not in the second
- * @param array1
- * @param array2
+ * @param oldArray
+ * @param newArray
  * @example
  * ```ts
  * console.log(removed([1, 2, 3], [2, 3, 4])); // [1]
@@ -172,9 +176,13 @@ export function union<T>(...arrays: ReadonlyArray<readonly T[]>): T[] {
  * ```
  */
 export function arraysEqual<T>(a: readonly T[], b: readonly T[]): boolean {
-  if (a.length !== b.length) return false;
+  if (a.length !== b.length) {
+    return false;
+  }
   for (const [item1, item2] of zip(a, b)) {
-    if (item1 !== item2) return false;
+    if (item1 !== item2) {
+      return false;
+    }
   }
 
   return true;
@@ -282,7 +290,9 @@ export function sortByKeys<T, K extends keyof T>(
       const value1 = a[key];
       const value2 = b[key];
       const cmp = compare(value1, value2);
-      if (cmp) return cmp;
+      if (cmp) {
+        return cmp;
+      }
     }
 
     return 0;

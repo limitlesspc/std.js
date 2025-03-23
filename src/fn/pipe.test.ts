@@ -1,6 +1,6 @@
-import { expect, test } from "vitest";
 import { collect, every, filter } from "../iter";
 import { pipe } from "./pipe";
+import { expect, test } from "vitest";
 
 test(() => {
   const add = (x: number) => (y: number) => x + y;

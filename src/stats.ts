@@ -20,7 +20,9 @@ import { collect, filter, map, tee } from "./iter";
 export function min(iter: Iterable<number>): number {
   let min = Number.POSITIVE_INFINITY;
   for (const value of iter) {
-    if (value < min) min = value;
+    if (value < min) {
+      min = value;
+    }
   }
 
   return min;
@@ -40,7 +42,9 @@ export function min(iter: Iterable<number>): number {
 export function max(iter: Iterable<number>): number {
   let max = Number.NEGATIVE_INFINITY;
   for (const value of iter) {
-    if (value > max) max = value;
+    if (value > max) {
+      max = value;
+    }
   }
 
   return max;
@@ -62,8 +66,12 @@ export function minmax(iter: Iterable<number>): [min: number, max: number] {
   let min = Number.POSITIVE_INFINITY;
   let max = Number.NEGATIVE_INFINITY;
   for (const value of iter) {
-    if (value < min) min = value;
-    if (value > max) max = value;
+    if (value < min) {
+      min = value;
+    }
+    if (value > max) {
+      max = value;
+    }
   }
 
   return [min, max];
@@ -148,10 +156,14 @@ export function avg(iter: Iterable<number>): number {
  */
 export function median(array: number[]): number {
   const { length } = array;
-  if (!length) return 0;
+  if (!length) {
+    return 0;
+  }
   const sorted = [...array].sort((a, b) => a - b);
-  if (length % 2) return sorted[length / 2]!;
-  return (sorted[length / 2 - 1]! + sorted[length / 2]!) / 2;
+  if (length % 2) {
+    return sorted[length / 2];
+  }
+  return (sorted[length / 2 - 1] + sorted[length / 2]) / 2;
 }
 
 /**

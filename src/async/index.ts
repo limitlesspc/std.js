@@ -4,11 +4,11 @@
  */
 
 import { Queue } from "../structs";
-import { type AnyFunction, type Result, type uint } from "../types";
+import type { AnyFunction, Result, uint } from "../types";
 
 export * from "./queue";
 
-export const sleep = (ms = 0): Promise<void> =>
+export const sleep = async (ms = 0): Promise<void> =>
   new Promise<void>(resolve => setTimeout(resolve, ms));
 
 export function throttle<T extends AnyFunction>(
@@ -50,7 +50,7 @@ export function debounce<T extends AnyFunction>(
  * @param max the most promises that can run at once
  * @returns an array of results of all the promises in the order they were passed in
  */
-export function concurrently<T>(
+export async function concurrently<T>(
   funcs: Iterable<() => Promise<T>>,
   max: number,
 ): Promise<T[]> {
@@ -64,14 +64,14 @@ export function concurrently<T>(
       const func = queue.dequeue();
       if (func) {
         results[i++] = await func();
-        next();
+        void next();
       } else if (results.length === length) {
         resolve(results);
       }
     };
 
     for (let i = 0; i < max; i++) {
-      next();
+      void next();
     }
   });
 }
@@ -85,7 +85,9 @@ export async function retry<T>(
     try {
       return [await fn(), undefined];
     } catch (error) {
-      if (++attempts >= maxAttempts) return [undefined, error];
+      if (++attempts >= maxAttempts) {
+        return [undefined, error];
+      }
       await sleep(delay);
     }
   }
@@ -109,7 +111,9 @@ export async function retryWithExponentialBackoff<T>(
       return [await fn(), undefined];
     } catch (error) {
       const delay = startDelay * multiplier ** attempts;
-      if (++attempts >= maxAttempts) return [undefined, error];
+      if (++attempts >= maxAttempts) {
+        return [undefined, error];
+      }
       await sleep(delay);
     }
   }

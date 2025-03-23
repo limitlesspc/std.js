@@ -1,5 +1,5 @@
-import { assert, test } from "vitest";
 import { Mat2, mat2 } from "./mat2";
+import { assert, test } from "vitest";
 
 const a = mat2([5, 8, 3, 8]);
 const b = mat2([3, 8, 8, 9]);

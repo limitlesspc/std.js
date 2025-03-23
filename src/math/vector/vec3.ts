@@ -1,6 +1,6 @@
 import { random } from "../../random";
 import { clamp, lerp } from "../funcs";
-import { type Vec } from "./vec";
+import type { Vec } from "./vec";
 
 export type Vec3Like = [x: number, y: number, z: number] | Float32Array;
 export type ReadonlyVec3Like = Readonly<Vec3Like>;
@@ -204,13 +204,17 @@ export class Vec3 extends Float32Array implements Vec {
   limit(max: number): this {
     const maxSq = max * max;
     const magSq = this.magSq();
-    if (magSq > maxSq) this.setMag(max);
+    if (magSq > maxSq) {
+      this.setMag(max);
+    }
     return this;
   }
 
   normalize(): this {
     const mag = this.mag();
-    if (mag !== 0) this.div(mag);
+    if (mag !== 0) {
+      this.div(mag);
+    }
     return this;
   }
 

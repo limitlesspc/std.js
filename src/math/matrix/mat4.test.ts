@@ -1,5 +1,5 @@
-import { assert, test } from "vitest";
 import { Mat4, mat4 } from "./mat4";
+import { assert, test } from "vitest";
 
 const a = mat4([5, 7, 9, 10, 2, 3, 3, 8, 8, 10, 2, 3, 3, 3, 4, 8]);
 const b = mat4([3, 10, 12, 18, 12, 1, 4, 9, 9, 10, 12, 2, 3, 12, 4, 10]);

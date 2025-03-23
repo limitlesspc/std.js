@@ -1,5 +1,5 @@
-import { expectTypeOf, test } from "vitest";
 import { filter } from "./filter";
+import { expectTypeOf, test } from "vitest";
 
 test(() => {
   const iter = [1, "cat", 2, "dog"];

@@ -1,5 +1,5 @@
 import { dual } from "../fn";
-import { type NonFalsy } from "../types";
+import type { NonFalsy } from "../types";
 
 /**
  * Splits an iterable into two halves based on a condition
@@ -40,8 +40,11 @@ export const partition: {
     const pass: T[] = [];
     const fail: T[] = [];
     for (const item of iter) {
-      if (predicate(item)) pass.push(item);
-      else fail.push(item);
+      if (predicate(item)) {
+        pass.push(item);
+      } else {
+        fail.push(item);
+      }
     }
 
     return [pass, fail] as [T[], T[]];

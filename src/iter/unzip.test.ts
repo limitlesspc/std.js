@@ -1,5 +1,5 @@
-import { expect, test } from "vitest";
 import { unzip } from "./unzip";
+import { expect, test } from "vitest";
 
 test("unzip", () => {
   const array = [

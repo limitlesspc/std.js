@@ -1,5 +1,5 @@
 import { clamp, lerp } from "../funcs";
-import { type Vec } from "./vec";
+import type { Vec } from "./vec";
 
 export type Vec4Like =
   | [x: number, y: number, z: number, w: number]
@@ -227,13 +227,17 @@ export class Vec4 extends Float32Array implements Vec {
   limit(max: number): this {
     const maxSq = max * max;
     const magSq = this.magSq();
-    if (magSq > maxSq) this.setMag(max);
+    if (magSq > maxSq) {
+      this.setMag(max);
+    }
     return this;
   }
 
   normalize(): this {
     const mag = this.mag();
-    if (mag !== 0) this.div(mag);
+    if (mag !== 0) {
+      this.div(mag);
+    }
     return this;
   }
 

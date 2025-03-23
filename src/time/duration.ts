@@ -41,13 +41,27 @@ export class Duration {
 
   toString() {
     const parts: string[] = [];
-    if (this.years) parts.push(`${this.years}Y`);
-    if (this.months) parts.push(`${this.months}M`);
-    if (this.days) parts.push(`${this.days}D`);
-    if (this.hours) parts.push(`${this.hours}h`);
-    if (this.minutes) parts.push(`${this.minutes}m`);
-    if (this.seconds) parts.push(`${this.seconds}s`);
-    if (this.milliseconds) parts.push(`${this.milliseconds}ms`);
+    if (this.years) {
+      parts.push(`${this.years}Y`);
+    }
+    if (this.months) {
+      parts.push(`${this.months}M`);
+    }
+    if (this.days) {
+      parts.push(`${this.days}D`);
+    }
+    if (this.hours) {
+      parts.push(`${this.hours}h`);
+    }
+    if (this.minutes) {
+      parts.push(`${this.minutes}m`);
+    }
+    if (this.seconds) {
+      parts.push(`${this.seconds}s`);
+    }
+    if (this.milliseconds) {
+      parts.push(`${this.milliseconds}ms`);
+    }
     return parts.join(" ") || "0ms";
   }
 

@@ -1,5 +1,5 @@
-import { assert, test } from "vitest";
 import { MinHeap } from "./min-heap";
+import { assert, test } from "vitest";
 
 test("min heap", () => {
   const minHeap = new MinHeap<number>();
@@ -20,6 +20,7 @@ test("min heap", () => {
     assert.equal(minHeap.length, expected.length - actual.length);
   }
 
+  // eslint-disable-next-line unicorn/no-useless-undefined
   assert.deepEqual(minHeap.peek(), undefined);
   assert.deepEqual(actual, expected);
 

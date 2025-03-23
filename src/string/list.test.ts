@@ -1,5 +1,5 @@
-import { expect, test } from "vitest";
 import { listItems } from "./list";
+import { expect, test } from "vitest";
 
 test("no items", () => {
   expect(listItems([])).toBe("");

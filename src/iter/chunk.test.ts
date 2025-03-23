@@ -1,5 +1,5 @@
-import { expect, test } from "vitest";
 import { chunk } from "./chunk";
+import { expect, test } from "vitest";
 
 test("chunk", () => {
   const array = [1, 2, 3, 4, 5];

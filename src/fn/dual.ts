@@ -1,4 +1,4 @@
-import { type AnyFunction } from "../types";
+import type { AnyFunction } from "../types";
 
 export type Dual<Fn extends AnyFunction, Args = Parameters<Fn>> =
   Args extends [infer First, ...infer Rest] ?
@@ -15,10 +15,13 @@ export type Dual<Fn extends AnyFunction, Args = Parameters<Fn>> =
  */
 export const dual =
   <Fn extends AnyFunction>(fn: Fn): Dual<Fn> =>
-  // @ts-ignore
+  // @ts-expect-error funky type maneuvering
   (...args: any[]) => {
-    // @ts-ignore
-    if (args.length === fn.length) return fn(...args);
-    // @ts-ignore
-    return (first: First) => fn(first, ...args);
+    if (args.length === fn.length) {
+      // eslint-disable-next-line ts/no-unsafe-return, ts/no-unsafe-argument
+      return fn(...args);
+    }
+    // @ts-expect-error funky type maneuvering
+    // eslint-disable-next-line ts/no-unsafe-return, ts/no-unsafe-argument
+    return first => fn(first, ...args);
   };

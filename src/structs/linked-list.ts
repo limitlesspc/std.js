@@ -1,4 +1,4 @@
-import { type uint } from "../types";
+import type { uint } from "../types";
 
 interface Node<T> {
   value: T;
@@ -13,7 +13,9 @@ export class LinkedList<T> implements Iterable<T> {
     let node: Node<T> | undefined;
     for (const value of values) {
       const child = { value };
-      if (node) node.next = child;
+      if (node) {
+        node.next = child;
+      }
       node = child;
     }
 
@@ -53,7 +55,9 @@ export class LinkedList<T> implements Iterable<T> {
     let current = this.node;
     let i = 0;
     while (current) {
-      if (i === index) return current;
+      if (i === index) {
+        return current;
+      }
       current = current.next;
       i++;
     }
@@ -65,7 +69,9 @@ export class LinkedList<T> implements Iterable<T> {
 
   set(index: uint, value: T): T | undefined {
     const node = this.getNode(index);
-    if (!node) return;
+    if (!node) {
+      return;
+    }
 
     const { value: oldValue } = node;
     node.value = value;
@@ -76,8 +82,11 @@ export class LinkedList<T> implements Iterable<T> {
   push(value: T): void {
     const { tail } = this;
     const node: Node<T> = { value };
-    if (tail) tail.next = node;
-    else this.node = node;
+    if (tail) {
+      tail.next = node;
+    } else {
+      this.node = node;
+    }
   }
 
   pop(): Node<T> | undefined {

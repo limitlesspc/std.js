@@ -13,15 +13,19 @@ export const slidingWindow: {
     size: uint;
     partial?: boolean;
   }): (iter: Iterable<T>) => Generator<T[]>;
-} = dual(function* <T>(
+} = dual(function* slidingWindow<T>(
   iter: Iterable<T>,
   { size, partial }: { size: uint; partial?: boolean },
 ): Generator<T[]> {
   const window: T[] = [];
   for (const value of iter) {
     window.push(value);
-    if (window.length > size) window.shift();
-    if (window.length === size || partial) yield [...window];
+    if (window.length > size) {
+      window.shift();
+    }
+    if (window.length === size || partial) {
+      yield [...window];
+    }
   }
 
   if (partial) {

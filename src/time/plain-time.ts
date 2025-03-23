@@ -1,6 +1,6 @@
 import { HOUR, MINUTE, SECOND } from "./consts";
 import { addDuration, getToday, since, subtractDuration, until } from "./date";
-import { type DurationLike } from "./duration";
+import type { DurationLike } from "./duration";
 
 export class PlainTime {
   constructor(
@@ -15,9 +15,9 @@ export class PlainTime {
   }
   static fromString(str: string) {
     const [yearStr, monthStr, dayStr] = str.split("-");
-    const year = parseInt(yearStr);
-    const month = parseInt(monthStr);
-    const day = parseInt(dayStr);
+    const year = Number.parseInt(yearStr);
+    const month = Number.parseInt(monthStr);
+    const day = Number.parseInt(dayStr);
     return new PlainTime(year, month, day);
   }
 

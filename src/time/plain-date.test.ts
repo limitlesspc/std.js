@@ -1,5 +1,5 @@
-import { expect, test } from "vitest";
 import { PlainDate } from "./plain-date";
+import { expect, test } from "vitest";
 
 test("fromString", () => {
   const date = PlainDate.fromString("2020-03-14");

@@ -1,5 +1,5 @@
-import { expect, test } from "vitest";
 import { Duration } from "./duration";
+import { expect, test } from "vitest";
 
 test("all zeros", () => {
   const duration = new Duration();

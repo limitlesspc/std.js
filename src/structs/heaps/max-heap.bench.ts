@@ -1,7 +1,8 @@
-import { bench, describe } from "vitest";
-import { shuffle, unorderedRemove } from "../../array";
-import { max } from "../../math";
+import { unorderedRemove } from "../../array";
+import { shuffle } from "../../random";
+import { max } from "../../stats";
 import { MaxHeap } from "./max-heap";
+import { bench, describe } from "vitest";
 
 describe("find max", () => {
   const array = shuffle(Array.from({ length: 1_000_000 }, (_, i) => i));
@@ -50,6 +51,7 @@ describe("remove max until empty", () => {
     "heap",
     () => {
       for (const _ of heap) {
+        /* empty */
       }
     },
     {

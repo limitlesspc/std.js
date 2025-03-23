@@ -1,5 +1,5 @@
-import { expect, test } from "vitest";
 import { overlap } from "./funcs";
+import { expect, test } from "vitest";
 
 test("ranges overlap", () => {
   expect(overlap(0, 100, 50, 200)).toEqual(50);

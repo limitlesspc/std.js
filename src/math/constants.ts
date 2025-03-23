@@ -1,4 +1,4 @@
-import { Complex, complex } from "../cmath/complex";
+import { type Complex, complex } from "../cmath/complex";
 
 export const π = Math.PI;
 export const τ = 2 * π;

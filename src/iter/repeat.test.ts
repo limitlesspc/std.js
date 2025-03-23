@@ -1,8 +1,8 @@
-import { expect, test } from "vitest";
 import { pipe } from "../fn";
 import { collect } from "./collect";
 import { range } from "./range";
 import { repeat } from "./repeat";
+import { expect, test } from "vitest";
 
 test("zero items", () => {
   const iter = range(0);

@@ -12,8 +12,8 @@ export const nth: {
 } = dual(<T>(iter: Iterable<T>, n: uint) => {
   let i = 0;
   for (const value of iter) {
-    if (i++ === n) return value;
+    if (i++ === n) {
+      return value;
+    }
   }
-
-  return undefined;
 });

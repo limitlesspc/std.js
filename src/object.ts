@@ -18,8 +18,8 @@
 export const hasOwn = <T, K extends PropertyKey>(
   obj: T,
   key: K,
-): obj is T & { [key in K]: unknown } =>
-  Object.prototype.hasOwnProperty.call(obj, key);
+  // @ts-expect-error allow anything to be passed into Object.hasOwn
+): obj is T & { [key in K]: unknown } => Object.hasOwn(obj, key);
 
 /**
  * Determines if two objects are shallowly equal, that is,
@@ -35,13 +35,19 @@ export const hasOwn = <T, K extends PropertyKey>(
  */
 export function shallowEquals<A, B>(a: A, b: B): boolean {
   // @ts-expect-error a and b might be the same value
-  if (a === b) return true;
+  if (a === b) {
+    return true;
+  }
   for (const key in a) {
-    if (hasOwn(a, key) && !hasOwn(b, key)) return false;
+    if (hasOwn(a, key) && !hasOwn(b, key)) {
+      return false;
+    }
   }
 
   for (const key in b) {
-    if (hasOwn(b, key) && !hasOwn(a, key)) return false;
+    if (hasOwn(b, key) && !hasOwn(a, key)) {
+      return false;
+    }
   }
 
   return true;
@@ -63,44 +69,52 @@ export function shallowEquals<A, B>(a: A, b: B): boolean {
  */
 export function deepEquals<A, B>(a: A, b: B): boolean {
   // @ts-expect-error a and b might be the same value
-  if (a === b) return true;
-  if (a == null || b == null) return false;
-  if (a.constructor !== b.constructor) return false;
+  if (a === b) {
+    return true;
+  }
+  if (a == null || b == null) {
+    return false;
+  }
+  if (a.constructor !== b.constructor) {
+    return false;
+  }
   for (const key in a) {
     if (hasOwn(a, key)) {
-      if (!hasOwn(b, key)) return false;
+      if (!hasOwn(b, key)) {
+        return false;
+      }
       // @ts-expect-error a's key might be the same as b's key
-      if (a[key] === b[key]) continue;
-      if (typeof a[key] !== "object") return false;
-      if (!deepEquals(a[key], b[key])) return false;
+      if (a[key] === b[key]) {
+        continue;
+      }
+      if (typeof a[key] !== "object") {
+        return false;
+      }
+      if (!deepEquals(a[key], b[key])) {
+        return false;
+      }
     }
   }
 
   for (const key in b) {
     if (hasOwn(b, key)) {
-      if (!hasOwn(a, key)) return false;
+      if (!hasOwn(a, key)) {
+        return false;
+      }
       // @ts-expect-error b's key might be the same as a's key
-      if (a[key] === b[key]) continue;
-      if (typeof b[key] !== "object") return false;
-      if (!deepEquals(a[key], b[key])) return false;
+      if (a[key] === b[key]) {
+        continue;
+      }
+      if (typeof b[key] !== "object") {
+        return false;
+      }
+      if (!deepEquals(a[key], b[key])) {
+        return false;
+      }
     }
   }
 
   return true;
-}
-
-export function value2Keys<K extends string, T extends string>(
-  obj: Record<K, Iterable<T>>,
-): Record<T, K[]> {
-  const result = {} as Record<T, K[]>;
-  for (const [key, iter] of objectEntries(obj)) {
-    for (const v of iter) {
-      if (!result[v]) result[v] = [];
-      result[v].push(key);
-    }
-  }
-
-  return result;
 }
 
 export const objectKeys: <T>(obj: T) => Array<keyof T> = Object.keys;
@@ -110,6 +124,20 @@ export const objectEntries: <T>(obj: T) => Entries<T> = Object.entries;
 type ReadonlyEntry<T> = [key: keyof T, value: T[keyof T]];
 export const objectFromEntries: <T>(entries: Iterable<ReadonlyEntry<T>>) => T =
   Object.fromEntries;
+
+export function value2Keys<K extends string, T extends string>(
+  obj: Record<K, Iterable<T>>,
+): Record<T, K[]> {
+  const result = {} as Record<T, K[]>;
+  for (const [key, iter] of objectEntries(obj)) {
+    for (const v of iter) {
+      result[v] ||= [];
+      result[v].push(key);
+    }
+  }
+
+  return result;
+}
 
 /**
  * Maps the values of an object to a new object
@@ -134,13 +162,23 @@ export function objectMap<T, U>(
 }
 
 export function deepCopy<T>(object: T): T {
-  if (object == null) return object;
-  // @ts-expect-error Array.isArray returns any[]
-  if (Array.isArray(object)) return object.map(deepCopy);
-  if (typeof object !== "object") return object;
+  if (object == null) {
+    return object;
+  }
+  if (Array.isArray(object)) {
+    // @ts-expect-error Array.isArray returns any[]
+    // eslint-disable-next-line ts/no-unsafe-return
+    return object.map(deepCopy);
+  }
+  if (typeof object !== "object") {
+    return object;
+  }
+  // eslint-disable-next-line ts/no-unsafe-argument
   const copy = Object.create(Object.getPrototypeOf(object)) as T;
   for (const key in object) {
-    if (hasOwn(object, key)) copy[key] = deepCopy(object[key]);
+    if (hasOwn(object, key)) {
+      copy[key] = deepCopy(object[key]);
+    }
   }
 
   return copy;
@@ -159,6 +197,7 @@ export function pickByKeys<T, K extends keyof T>(
     const result = {} as Pick<T, K>;
     for (const key of keys) {
       // @ts-expect-error Array.isArray returns any[]
+      // eslint-disable-next-line ts/no-unsafe-assignment, ts/no-unsafe-member-access
       result[key] = object[key];
     }
 
@@ -166,5 +205,6 @@ export function pickByKeys<T, K extends keyof T>(
   }
 
   // @ts-expect-error overloads don't work well with generics
+  // eslint-disable-next-line ts/no-unsafe-return
   return object[keys];
 }

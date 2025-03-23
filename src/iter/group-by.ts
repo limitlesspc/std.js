@@ -15,8 +15,11 @@ export const groupBy: {
     for (const item of array) {
       const value = item[key];
       const group = groups.get(value);
-      if (group) group.push(item);
-      else groups.set(value, [item]);
+      if (group) {
+        group.push(item);
+      } else {
+        groups.set(value, [item]);
+      }
     }
 
     return groups;

@@ -1,6 +1,6 @@
-import { expect, test } from "vitest";
 import { count } from "./count";
 import { range } from "./range";
+import { expect, test } from "vitest";
 
 test("zero items", () => {
   const iter = range(0);

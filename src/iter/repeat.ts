@@ -1,5 +1,5 @@
 import { dual } from "../fn";
-import { type uint } from "../types";
+import type { uint } from "../types";
 import { range } from "./range";
 
 /**
@@ -10,7 +10,7 @@ import { range } from "./range";
 export const repeat: {
   <T>(iter: Iterable<T>, n: uint): Generator<T>;
   <T>(n: uint): (iter: Iterable<T>) => Generator<T>;
-} = dual(function* <T>(iter: Iterable<T>, n: uint) {
+} = dual(function* repeat<T>(iter: Iterable<T>, n: uint) {
   const values: T[] = [];
   for (const i of range(n)) {
     if (i) {

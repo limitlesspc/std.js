@@ -8,7 +8,7 @@ export * from "./list";
 export * from "./word";
 
 export function reverse(str: string): string {
-  return str.split("").reverse().join();
+  return [...str].reverse().join("");
 }
 
 export function replace(
@@ -23,5 +23,5 @@ export function replace(
 }
 
 function escapeRegex(regexStr: string) {
-  return regexStr.replaceAll(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
+  return regexStr.replaceAll(/[$()*+./?[\\\]^{|}-]/g, "\\$&");
 }

@@ -1,5 +1,5 @@
-import { assert, test } from "vitest";
 import { mat, Mat } from "./mat";
+import { assert, test } from "vitest";
 
 const a = mat(4, 3);
 a.set([1, 5, 4, 8, 0, 4, 6, 4, 8, 4, 5, 5]);

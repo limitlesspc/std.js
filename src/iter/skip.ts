@@ -9,9 +9,11 @@ import { type uint } from "../types";
 export const skip: {
   <T>(iter: Iterable<T>, n: uint): Generator<T>;
   <T>(n: uint): (iter: Iterable<T>) => Generator<T>;
-} = dual(function* <T>(iter: Iterable<T>, n: uint) {
+} = dual(function* skip<T>(iter: Iterable<T>, n: uint) {
   let count = 0;
   for (const value of iter) {
-    if (++count > n) yield value;
+    if (++count > n) {
+      yield value;
+    }
   }
 });

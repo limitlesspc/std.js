@@ -1,6 +1,6 @@
 import { random } from "../../random";
 import { clamp, lerp } from "../funcs";
-import { type Vec } from "./vec";
+import type { Vec } from "./vec";
 
 export type Vec2Like = [x: number, y: number] | Float32Array;
 export type ReadonlyVec2Like = Readonly<Vec2Like>;
@@ -48,7 +48,9 @@ export class Vec2 extends Float32Array implements Vec {
   }
 
   eq(x: First, y?: number): boolean {
-    if (typeof x === "number") return this.x === x && this.y === (y ?? x);
+    if (typeof x === "number") {
+      return this.x === x && this.y === (y ?? x);
+    }
     return this.x === x[0] && this.y === x[1];
   }
 
@@ -156,13 +158,17 @@ export class Vec2 extends Float32Array implements Vec {
   limit(max: number): this {
     const maxSq = max * max;
     const magSq = this.magSq();
-    if (magSq > maxSq) this.setMag(max);
+    if (magSq > maxSq) {
+      this.setMag(max);
+    }
     return this;
   }
 
   normalize(): this {
     const mag = this.mag();
-    if (mag !== 0) this.div(mag);
+    if (mag !== 0) {
+      this.div(mag);
+    }
     return this;
   }
 

@@ -1,5 +1,5 @@
 import { ascend, type Compare } from "../cmp";
-import { int, type uint } from "../types";
+import type { int, uint } from "../types";
 
 /**
  * ## Sorted Array
@@ -19,7 +19,9 @@ export class SortedArray<T> implements Iterable<T> {
     readonly compare: Compare<T> = ascend,
     sort = true,
   ) {
-    if (sort) this.data.sort(compare);
+    if (sort) {
+      this.data.sort(compare);
+    }
   }
 
   valueOf(): T | undefined {
@@ -64,10 +66,14 @@ export class SortedArray<T> implements Iterable<T> {
     let high = data.length - 1;
     while (low <= high) {
       const mid = Math.floor((low + high) / 2);
-      const cmp = this.compare(value, data[mid]!);
-      if (cmp < 0) high = mid - 1;
-      else if (cmp > 0) low = mid + 1;
-      else return mid;
+      const cmp = this.compare(value, data[mid]);
+      if (cmp < 0) {
+        high = mid - 1;
+      } else if (cmp > 0) {
+        low = mid + 1;
+      } else {
+        return mid;
+      }
     }
 
     return -1;
@@ -78,7 +84,7 @@ export class SortedArray<T> implements Iterable<T> {
    * @param value
    */
   has(value: T): boolean {
-    return this.indexOf(value) !== -1;
+    return this.data.includes(value);
   }
 
   /**
@@ -92,10 +98,12 @@ export class SortedArray<T> implements Iterable<T> {
     let high = data.length - 1;
     while (low <= high) {
       const mid = Math.floor((low + high) / 2);
-      const cmp = compare(value, data[mid]!);
-      if (cmp < 0) high = mid - 1;
-      else if (cmp > 0) low = mid + 1;
-      else {
+      const cmp = compare(value, data[mid]);
+      if (cmp < 0) {
+        high = mid - 1;
+      } else if (cmp > 0) {
+        low = mid + 1;
+      } else {
         data.splice(mid, 0, value);
         return mid;
       }

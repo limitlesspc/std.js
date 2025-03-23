@@ -1,4 +1,4 @@
-import { type uint } from "../types";
+import type { uint } from "../types";
 
 interface Node<T> {
   value: T;
@@ -36,7 +36,9 @@ export class DoublyLinkedList<T> implements Iterable<T> {
     let current = this.head;
     let i = 0;
     while (current) {
-      if (i === index) return current;
+      if (i === index) {
+        return current;
+      }
       current = current.next;
       i++;
     }
@@ -50,7 +52,9 @@ export class DoublyLinkedList<T> implements Iterable<T> {
 
   set(index: uint, value: T): T | undefined {
     const node = this.getNode(index);
-    if (!node) return undefined;
+    if (!node) {
+      return undefined;
+    }
 
     const { value: oldValue } = node;
     node.value = value;
@@ -73,12 +77,16 @@ export class DoublyLinkedList<T> implements Iterable<T> {
   }
 
   pop(): T | undefined {
-    if (!this.tail) return undefined;
+    if (!this.tail) {
+      return undefined;
+    }
 
     const { value } = this.tail;
     this.tail = this.tail.prev;
 
-    if (!this.tail) this.head = undefined;
+    if (!this.tail) {
+      this.head = undefined;
+    }
 
     this.size--;
 
@@ -100,12 +108,16 @@ export class DoublyLinkedList<T> implements Iterable<T> {
   }
 
   shift(): T | undefined {
-    if (!this.head) return undefined;
+    if (!this.head) {
+      return undefined;
+    }
 
     const { value } = this.head;
     this.head = this.head.next;
 
-    if (!this.head) this.tail = undefined;
+    if (!this.head) {
+      this.tail = undefined;
+    }
 
     this.size--;
 
@@ -118,7 +130,7 @@ export class DoublyLinkedList<T> implements Iterable<T> {
     let next: Node<T> | undefined;
 
     while (current) {
-      next = current.next;
+      ({ next } = current);
       current.next = previous;
       current.prev = next;
       previous = current;
@@ -133,13 +145,23 @@ export class DoublyLinkedList<T> implements Iterable<T> {
 
   remove(index: uint): T | undefined {
     const node = this.getNode(index);
-    if (!node) return undefined;
+    if (!node) {
+      return undefined;
+    }
 
-    if (node.prev) node.prev.next = node.next;
-    if (node.next) node.next.prev = node.prev;
+    if (node.prev) {
+      node.prev.next = node.next;
+    }
+    if (node.next) {
+      node.next.prev = node.prev;
+    }
 
-    if (node === this.head) this.head = node.next;
-    if (node === this.tail) this.tail = node.prev;
+    if (node === this.head) {
+      this.head = node.next;
+    }
+    if (node === this.tail) {
+      this.tail = node.prev;
+    }
 
     this.size--;
 
@@ -150,7 +172,9 @@ export class DoublyLinkedList<T> implements Iterable<T> {
     const removed = [];
     for (let i = 0; i < count; i++) {
       const value = this.remove(index);
-      if (value) removed.push(value);
+      if (value) {
+        removed.push(value);
+      }
     }
 
     for (const value of values) {

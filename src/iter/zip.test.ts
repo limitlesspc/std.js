@@ -1,5 +1,5 @@
-import { expect, test } from "vitest";
 import { zip } from "./zip";
+import { expect, test } from "vitest";
 
 test("same length", () => {
   const array1 = [1, 2, 3, 4, 5];

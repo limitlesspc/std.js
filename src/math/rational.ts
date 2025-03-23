@@ -9,7 +9,10 @@ function gcd(a: bigint, b: bigint) {
 }
 
 /** An object that represents a rational number. */
-export type RationalLike = { numerator: bigint; denominator: bigint };
+export interface RationalLike {
+  numerator: bigint;
+  denominator: bigint;
+}
 
 /**
  * A number represented as a ratio of two integers.

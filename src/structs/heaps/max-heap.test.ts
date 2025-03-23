@@ -1,5 +1,5 @@
-import { assert, test } from "vitest";
 import { MaxHeap } from "./max-heap";
+import { assert, test } from "vitest";
 
 test("max heap", () => {
   const maxHeap = new MaxHeap<number>();

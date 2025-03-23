@@ -1,6 +1,6 @@
-import { assert, test } from "vitest";
 import { ascend, descend } from "../../cmp";
 import { Heap } from "./heap";
+import { assert, test } from "vitest";
 
 interface Container {
   id: number;
@@ -27,7 +27,7 @@ test("containing objects", () => {
 
     const expectedContainer = {
       id: expected[i],
-      values: [expectedValue[i]! - 1, expectedValue[i], expectedValue[i]! + 1],
+      values: [expectedValue[i] - 1, expectedValue[i], expectedValue[i] + 1],
     };
     assert.deepEqual(heap.peek(), expectedContainer);
     assert.deepEqual(heap.pop(), expectedContainer);

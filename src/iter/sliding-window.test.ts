@@ -1,6 +1,6 @@
-import { describe, expect, test } from "vitest";
 import { range } from "./range";
 import { slidingWindow } from "./sliding-window";
+import { describe, expect, test } from "vitest";
 
 describe("full window", () => {
   test("zero items", () => {

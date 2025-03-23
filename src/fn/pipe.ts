@@ -1,6 +1,6 @@
-import { type Awaitable } from "../types";
+import type { Awaitable } from "../types";
 
-export type Pipe = {
+export interface Pipe {
   <T>(x: T): T;
   <T, R0>(x: T, fn0: (x: T) => R0): R0;
   <T, R0, R1>(x: T, fn0: (x: T) => R0, fn1: (x: R0) => R1): R1;
@@ -80,12 +80,12 @@ export type Pipe = {
     fn8: (x: R7) => R8,
     fn9: (x: R8) => R9,
   ): R9;
-};
+}
 
 export const pipe: Pipe = <T>(x: T, ...fns: Array<(x: T) => T>) =>
   fns.reduce((x, fn) => fn(x), x);
 
-export type AsyncPipe = {
+export interface AsyncPipe {
   <T>(x: Awaitable<T>): Promise<T>;
   <T, R0>(x: Awaitable<T>, fn0: (x: T) => Awaitable<R0>): Promise<R0>;
   <T, R0, R1>(
@@ -169,7 +169,7 @@ export type AsyncPipe = {
     fn8: (x: Awaited<R7>) => Awaitable<R8>,
     fn9: (x: Awaited<R8>) => Awaitable<R9>,
   ): Promise<R9>;
-};
+}
 
 export const asyncPipe: AsyncPipe = async <T>(
   x: Awaitable<T>,

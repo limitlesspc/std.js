@@ -1,6 +1,6 @@
 import { dual } from "../fn";
 import { pickByKeys } from "../object";
-import { type AnyRecord } from "../types";
+import type { AnyRecord } from "../types";
 
 /**
  * Using an iterable of objects, extract part of each object
@@ -23,7 +23,7 @@ export const pick: {
   <T extends AnyRecord, K extends keyof T>(
     keys: K[],
   ): (iter: Iterable<T>) => Generator<Pick<T, K>>;
-} = dual(function* <T extends AnyRecord, K extends keyof T>(
+} = dual(function* pick<T extends AnyRecord, K extends keyof T>(
   iter: Iterable<T>,
   keys: K | K[],
 ) {

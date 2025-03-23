@@ -1,5 +1,5 @@
 import { avg, minmax } from "../stats";
-import { type int, type uint } from "../types";
+import type { int, uint } from "../types";
 
 /**
  * Determines if a value is a number other than `NaN`
@@ -198,8 +198,8 @@ export function lineOfBestFit(
   let n = 0;
   let den = 0;
   for (let i = 0; i < points.length; i++) {
-    const x = xs[i]!;
-    const y = ys[i]!;
+    const x = xs[i];
+    const y = ys[i];
     n += (x - meanX) * (y - meanY);
     den += (x - meanX) ** 2;
   }
@@ -210,7 +210,7 @@ export function lineOfBestFit(
 }
 
 export const sigmoid = (x: number): number => 1 / (1 + Math.exp(-x));
-export const relu = (x: number): number => (x > 0 ? x : 0);
+export const relu = (x: number): number => Math.max(x, 0);
 export const leakyRelu = (x: number, a = 0.01): number => (x > 0 ? x : a * x);
 
 /**
@@ -219,7 +219,9 @@ export const leakyRelu = (x: number, a = 0.01): number => (x > 0 ? x : a * x);
  * @param k the number of choices being made
  */
 export function permutations(n: uint, k: uint): number {
-  if (k > n) return 0;
+  if (k > n) {
+    return 0;
+  }
   return factorial(n) / factorial(n - k);
 }
 
@@ -229,7 +231,9 @@ export function permutations(n: uint, k: uint): number {
  * @param k the number of choices being made
  */
 export function combinations(n: uint, k: uint): number {
-  if (k > n) return 0;
+  if (k > n) {
+    return 0;
+  }
   return permutations(n, k) / factorial(k);
 }
 
@@ -242,7 +246,9 @@ export function dot(a: Iterable<number>, b: Iterable<number>): number {
     const result1 = iter1.next();
     const result2 = iter2.next();
 
-    if (result1.done && result2.done) break;
+    if (result1.done && result2.done) {
+      break;
+    }
 
     total += (result1.value || 0) * (result2.value || 0);
   }

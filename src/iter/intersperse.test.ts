@@ -1,6 +1,6 @@
-import { expect, test } from "vitest";
 import { intersperse } from "./intersperse";
 import { range } from "./range";
+import { expect, test } from "vitest";
 
 test("zero items", () => {
   const iter = range(0);
