@@ -209,10 +209,6 @@ export function lineOfBestFit(
   return [m, b];
 }
 
-export const sigmoid = (x: number): number => 1 / (1 + Math.exp(-x));
-export const relu = (x: number): number => Math.max(x, 0);
-export const leakyRelu = (x: number, a = 0.01): number => (x > 0 ? x : a * x);
-
 /**
  * Calculates the number of ways to choose `k` items from `n` items without repeating and with ordering
  * @param n the number of items

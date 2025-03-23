@@ -41,24 +41,3 @@ export function unhex(hex: string): Uint8Array {
 
   return bytes;
 }
-
-/**
- * Counts the number of bits set to 1 in an integer
- * @param n the integer to count the bits of
- * @returns the number of bits set to 1
- * @example
- * ```ts
- * console.log(popcnt(0b1010)); // 2
- * console.log(popcnt(0b1111)); // 4
- * console.log(popcnt(0b10000000000000000000000000000000)); // 1
- * ```
- */
-export function popcnt(n: uint): uint {
-  let count = 0;
-  while (n) {
-    n &= n - 1;
-    count++;
-  }
-
-  return count;
-}

@@ -75,19 +75,19 @@ export function choice<T>(array: ArrayLike<T>) {
 }
 
 /**
- * Get random items from an array
- * @param array
- * @param n number of items to pick
- * @returns an array containing the random items
- */
-export function choices<T>(array: ArrayLike<T>, n: uint): T[];
-/**
  * Get random characters from a string
  * @param string
  * @param n number of characters to pick
  * @returns a string of the random chars
  */
 export function choices(string: string, n: uint): string;
+/**
+ * Get random items from an array
+ * @param array
+ * @param n number of items to pick
+ * @returns an array containing the random items
+ */
+export function choices<T>(array: ArrayLike<T>, n: uint): T[];
 export function choices<T>(array: ArrayLike<T>, n: uint): T[] | string {
   if (!array.length || !n) {
     return [];

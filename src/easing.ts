@@ -88,7 +88,9 @@ export function easeOutExpo(t: number): number {
 }
 
 export function easeInOutExpo(t: number): number {
-  if (t === 0 || t === 1) return t;
+  if (t === 0 || t === 1) {
+    return t;
+  }
   return t < 0.5 ? 2 ** (20 * (t - 1)) / 2 : -(2 ** (-20 * t)) / 2 + 1;
 }
 
@@ -107,17 +109,23 @@ export function easeInOutCirc(t: number): number {
 }
 
 export function easeInElastic(t: number): number {
-  if (t === 0 || t === 1) return t;
+  if (t === 0 || t === 1) {
+    return t;
+  }
   return -(2 ** (10 * (t - 1))) * Math.sin((t - 1.1) * 5 * Math.PI);
 }
 
 export function easeOutElastic(t: number): number {
-  if (t === 0 || t === 1) return t;
+  if (t === 0 || t === 1) {
+    return t;
+  }
   return 2 ** (-10 * t) * Math.sin((t - 0.1) * 5 * Math.PI) + 1;
 }
 
 export function easeInOutElastic(t: number): number {
-  if (t === 0 || t === 1) return t;
+  if (t === 0 || t === 1) {
+    return t;
+  }
   return t < 0.5 ?
       -(2 ** (20 * (t - 1)) * Math.sin((t - 1.1) * 5 * Math.PI)) / 2
     : (2 ** (-20 * t) * Math.sin((t - 1.1) * 5 * Math.PI)) / 2 + 1;
@@ -142,8 +150,12 @@ export function easeInBounce(t: number): number {
 }
 
 export function easeOutBounce(t: number): number {
-  if (t < 1 / 2.75) return 7.5625 * t * t;
-  if (t < 2 / 2.75) return 7.5625 * (t -= 1.5 / 2.75) * t + 0.75;
+  if (t < 1 / 2.75) {
+    return 7.5625 * t * t;
+  }
+  if (t < 2 / 2.75) {
+    return 7.5625 * (t -= 1.5 / 2.75) * t + 0.75;
+  }
   return t < 2.5 / 2.75 ?
       7.5625 * (t -= 2.25 / 2.75) * t + 0.9375
     : 7.5625 * (t -= 2.625 / 2.75) * t + 0.984_375;
