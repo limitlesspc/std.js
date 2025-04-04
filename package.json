@@ -69,6 +69,11 @@
       "require": "./dist/cmp.cjs",
       "types": "./dist/cmp.d.ts"
     },
+    "./csv": {
+      "import": "./dist/csv.js",
+      "require": "./dist/csv.cjs",
+      "types": "./dist/csv.d.ts"
+    },
     "./easing": {
       "import": "./dist/easing.js",
       "require": "./dist/easing.cjs",
@@ -88,11 +93,6 @@
       "import": "./dist/random.js",
       "require": "./dist/random.cjs",
       "types": "./dist/random.d.ts"
-    },
-    "./stats": {
-      "import": "./dist/stats.js",
-      "require": "./dist/stats.cjs",
-      "types": "./dist/stats.d.ts"
     },
     "./types": {
       "import": "./dist/types.js",

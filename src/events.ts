@@ -5,7 +5,7 @@
 
 import { pipe } from "./fn";
 import { pick } from "./iter";
-import { sum } from "./stats";
+import { sum } from "./math";
 import type { AnyRecord, uint } from "./types";
 
 type Unsubscribe = () => void;

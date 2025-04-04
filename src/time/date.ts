@@ -1,4 +1,13 @@
-import { Duration, type DurationLike } from "./duration";
+export interface DurationLike {
+  readonly years?: number;
+  readonly months?: number;
+  readonly weeks?: number;
+  readonly days?: number;
+  readonly hours?: number;
+  readonly minutes?: number;
+  readonly seconds?: number;
+  readonly milliseconds?: number;
+}
 
 export function addDuration(
   date: Date,
@@ -56,28 +65,6 @@ export function subtractDuration(
     newDate.setMilliseconds(newDate.getMilliseconds() - milliseconds);
   }
   return newDate;
-}
-
-/**
- * Calculates the duration from `a` since `b`
- * The duration will be positive if `a` is after `b`
- * @param a
- * @param b
- */
-export function since(a: Date, b: Date) {
-  const milliseconds = a.getTime() - b.getTime();
-  return new Duration({ milliseconds });
-}
-
-/**
- * Calculates the duration from `a` until `b`
- * The duration will be negative if `a` is after `b`
- * @param a
- * @param b
- */
-export function until(a: Date, b: Date) {
-  const milliseconds = b.getTime() - a.getTime();
-  return new Duration({ milliseconds });
 }
 
 export const stripTime = (date: Date) =>

@@ -137,6 +137,32 @@ export function changes<T, U>(
 }
 
 /**
+ * Determines if there is an item in one array that is not in the other
+ * @example
+ * ```ts
+ * console.log(hasChange([1, 2, 3], [1, 2, 3])); // false
+ * console.log(hasChange([1, 2, 3], [2, 3, 1])); // false
+ * console.log(hasChange([1, 2, 3], [1, 2, 6])); // true
+ * ```
+ */
+export function hasChange(a: readonly any[], b: readonly any[]): boolean {
+  if (a.length !== b.length) {
+    return true;
+  }
+  for (const item of a) {
+    if (!b.includes(item)) {
+      return true;
+    }
+  }
+  for (const item of b) {
+    if (!a.includes(item)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
  * Returns an array containing items found in either array, but not both
  * @param array1
  * @param array2
@@ -160,8 +186,18 @@ export function difference<T>(array1: readonly T[], array2: readonly T[]): T[] {
  * console.log(union([1, 2, 3], [4, 5, 6])); // [1, 2, 3, 4, 5, 6]
  * ```
  */
-export function union<T>(...arrays: ReadonlyArray<readonly T[]>): T[] {
-  return [...new Set(arrays.flat())];
+export function union<T>(...arrays: Array<Iterable<T>>): T[] {
+  const result: T[] = [];
+  const seen = new Set<T>();
+  for (const array of arrays) {
+    for (const item of array) {
+      if (!seen.has(item)) {
+        seen.add(item);
+        result.push(item);
+      }
+    }
+  }
+  return result;
 }
 
 /**
@@ -175,7 +211,7 @@ export function union<T>(...arrays: ReadonlyArray<readonly T[]>): T[] {
  * console.log(arraysEqual([1, 2, 3], [3, 2, 1])); // false
  * ```
  */
-export function arraysEqual<T>(a: readonly T[], b: readonly T[]): boolean {
+export function equal<T>(a: readonly T[], b: readonly T[]): boolean {
   if (a.length !== b.length) {
     return false;
   }

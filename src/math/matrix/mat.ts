@@ -12,12 +12,11 @@ export class Mat extends Float32Array {
   constructor(rows: uint, cols: uint);
   constructor(mat: number[][]);
   constructor(rows: uint | number[][], cols = 0) {
-    super();
     if (typeof rows === "number") {
-      this.set([...repeat([0], rows * cols)]);
+      super(repeat([0], rows * cols));
       this.rows = rows;
     } else {
-      this.set(rows.flat());
+      super(rows.flat());
       this.rows = rows.length;
     }
   }

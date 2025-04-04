@@ -1,5 +1,5 @@
-import { avg, minmax } from "../stats";
 import type { int, uint } from "../types";
+import { avg, minmax } from "./stats";
 
 /**
  * Determines if a value is a number other than `NaN`

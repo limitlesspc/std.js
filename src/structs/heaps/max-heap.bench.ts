@@ -1,6 +1,6 @@
 import { unorderedRemove } from "../../array";
+import { max } from "../../math/stats";
 import { shuffle } from "../../random";
-import { max } from "../../stats";
 import { MaxHeap } from "./max-heap";
 import { bench, describe } from "vitest";
 

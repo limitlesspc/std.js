@@ -5,6 +5,16 @@
 
 import type { uint } from "./types";
 
+export const KILOBYTE = 1000;
+export const MEGABYTE = 1000 * KILOBYTE;
+export const GIBABYTE = 1000 * MEGABYTE;
+export const TERABYTE = 1000 * GIBABYTE;
+
+export const KIBIBYTE = 1000;
+export const MEBIBYTE = 1000 * KIBIBYTE;
+export const GIBIBYTE = 1000 * MEBIBYTE;
+export const TEBIBYTE = 1000 * GIBIBYTE;
+
 /**
  * Convert binary into its hex representation
  * @param buffer

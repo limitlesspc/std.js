@@ -5,5 +5,3 @@
 
 export * from "./consts";
 export * from "./date";
-export * from "./plain-date";
-export * from "./plain-time";
