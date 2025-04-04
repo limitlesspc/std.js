@@ -207,8 +207,8 @@ export function union<T>(...arrays: Array<Iterable<T>>): T[] {
  * @returns if the arrays are equal
  * @example
  * ```ts
- * console.log(arraysEqual([1, 2, 3], [1, 2, 3])); // true
- * console.log(arraysEqual([1, 2, 3], [3, 2, 1])); // false
+ * console.log(equal([1, 2, 3], [1, 2, 3])); // true
+ * console.log(equal([1, 2, 3], [3, 2, 1])); // false
  * ```
  */
 export function equal<T>(a: readonly T[], b: readonly T[]): boolean {
