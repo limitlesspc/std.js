@@ -22,7 +22,7 @@ export default defineConfig({
     "src/random.ts",
     "src/types.ts",
   ],
-  format: ["esm", "cjs"],
+  format: ["esm"],
   dts: true,
   clean: true,
 });
