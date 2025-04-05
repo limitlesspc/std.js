@@ -7,8 +7,8 @@ import type { uint } from "./types";
 
 export const KILOBYTE = 1000;
 export const MEGABYTE = 1000 * KILOBYTE;
-export const GIBABYTE = 1000 * MEGABYTE;
-export const TERABYTE = 1000 * GIBABYTE;
+export const GIGABYTE = 1000 * MEGABYTE;
+export const TERABYTE = 1000 * GIGABYTE;
 
 export const KIBIBYTE = 1024;
 export const MEBIBYTE = 1024 * KIBIBYTE;
