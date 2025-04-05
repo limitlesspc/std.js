@@ -20,7 +20,7 @@ import type { Indexable, MaybeArray } from "./types";
  * ```
  */
 export function swap<T>(array: Indexable<T>, i: number, j: number): void {
-  const temp = array[i];
+  const temp = array[i]!;
   array[i] = array[j]!;
   array[j] = temp;
 }

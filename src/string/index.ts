@@ -31,7 +31,7 @@ export function splitOnce(
     if (str.length < 2) {
       return [str];
     }
-    return [str[0], str.slice(1)];
+    return [str[0]!, str.slice(1)];
   }
   const index = str.indexOf(separator);
   if (index === -1) {

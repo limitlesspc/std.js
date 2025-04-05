@@ -198,8 +198,8 @@ export function lineOfBestFit(
   let n = 0;
   let den = 0;
   for (let i = 0; i < points.length; i++) {
-    const x = xs[i];
-    const y = ys[i];
+    const x = xs[i]!;
+    const y = ys[i]!;
     n += (x - meanX) * (y - meanY);
     den += (x - meanX) ** 2;
   }

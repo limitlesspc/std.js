@@ -47,8 +47,8 @@ export class Mat4 extends Float32Array {
 
   eq(m: ReadonlyMat4Like, precision?: int): boolean {
     for (let i = 0; i < 16; i++) {
-      const a = this[i];
-      const b = m[i];
+      const a = this[i]!;
+      const b = m[i]!;
       if (!closeTo(a, b, precision)) {
         return false;
       }
@@ -59,7 +59,7 @@ export class Mat4 extends Float32Array {
 
   add(m: ReadonlyMat4Like): this {
     for (let i = 0; i < 16; i++) {
-      this[i] += m[i];
+      this[i]! += m[i]!;
     }
 
     return this;
@@ -71,7 +71,7 @@ export class Mat4 extends Float32Array {
 
   sub(m: ReadonlyMat4Like): this {
     for (let i = 0; i < 16; i++) {
-      this[i] -= m[i];
+      this[i]! -= m[i]!;
     }
 
     return this;
@@ -90,7 +90,7 @@ export class Mat4 extends Float32Array {
     if (typeof m2 === "number") {
       const ans = mat4();
       for (let i = 0; i < 16; i++) {
-        ans[i] *= m2;
+        ans[i]! *= m2;
       }
 
       return ans;

@@ -66,7 +66,7 @@ export class SortedArray<T> implements Iterable<T> {
     let high = data.length - 1;
     while (low <= high) {
       const mid = Math.floor((low + high) / 2);
-      const cmp = this.compare(value, data[mid]);
+      const cmp = this.compare(value, data[mid]!);
       if (cmp < 0) {
         high = mid - 1;
       } else if (cmp > 0) {
@@ -98,7 +98,7 @@ export class SortedArray<T> implements Iterable<T> {
     let high = data.length - 1;
     while (low <= high) {
       const mid = Math.floor((low + high) / 2);
-      const cmp = compare(value, data[mid]);
+      const cmp = compare(value, data[mid]!);
       if (cmp < 0) {
         high = mid - 1;
       } else if (cmp > 0) {

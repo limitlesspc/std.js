@@ -161,9 +161,9 @@ export function median(array: number[]): number {
   }
   const sorted = [...array].sort((a, b) => a - b);
   if (length % 2) {
-    return sorted[length / 2];
+    return sorted[length / 2]!;
   }
-  return (sorted[length / 2 - 1] + sorted[length / 2]) / 2;
+  return (sorted[length / 2 - 1]! + sorted[length / 2]!) / 2;
 }
 
 /**

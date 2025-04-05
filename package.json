@@ -11,75 +11,75 @@
   "exports": {
     "./package.json": "./package.json",
     "./async": {
-      "main": "./dist/async/index.js",
+      "default": "./dist/async/index.js",
       "types": "./dist/async/index.d.ts"
     },
     "./cmath": {
-      "main": "./dist/cmath/index.js",
+      "default": "./dist/cmath/index.js",
       "types": "./dist/cmath/index.d.ts"
     },
     "./fn": {
-      "main": "./dist/fn/index.js",
+      "default": "./dist/fn/index.js",
       "types": "./dist/fn/index.d.ts"
     },
     "./gfx": {
-      "main": "./dist/gfx/index.js",
+      "default": "./dist/gfx/index.js",
       "types": "./dist/gfx/index.d.ts"
     },
     "./iter": {
-      "main": "./dist/iter/index.js",
+      "default": "./dist/iter/index.js",
       "types": "./dist/iter/index.d.ts"
     },
     "./math": {
-      "main": "./dist/math/index.js",
+      "default": "./dist/math/index.js",
       "types": "./dist/math/index.d.ts"
     },
     "./string": {
-      "main": "./dist/string/index.js",
+      "default": "./dist/string/index.js",
       "types": "./dist/string/index.d.ts"
     },
     "./structs": {
-      "main": "./dist/structs/index.js",
+      "default": "./dist/structs/index.js",
       "types": "./dist/structs/index.d.ts"
     },
     "./time": {
-      "main": "./dist/time/index.js",
+      "default": "./dist/time/index.js",
       "types": "./dist/time/index.d.ts"
     },
     "./array": {
-      "main": "./dist/array.js",
+      "default": "./dist/array.js",
       "types": "./dist/array.d.ts"
     },
     "./bytes": {
-      "main": "./dist/bytes.js",
+      "default": "./dist/bytes.js",
       "types": "./dist/bytes.d.ts"
     },
     "./cmp": {
-      "main": "./dist/cmp.js",
+      "default": "./dist/cmp.js",
       "types": "./dist/cmp.d.ts"
     },
     "./csv": {
-      "main": "./dist/csv.js",
+      "default": "./dist/csv.js",
       "types": "./dist/csv.d.ts"
     },
     "./easing": {
-      "main": "./dist/easing.js",
+      "default": "./dist/easing.js",
       "types": "./dist/easing.d.ts"
     },
     "./events": {
-      "main": "./dist/events.js",
+      "default": "./dist/events.js",
       "types": "./dist/events.d.ts"
     },
     "./object": {
-      "main": "./dist/object.js",
+      "default": "./dist/object.js",
       "types": "./dist/object.d.ts"
     },
     "./random": {
-      "main": "./dist/random.js",
+      "default": "./dist/random.js",
       "types": "./dist/random.d.ts"
     },
     "./types": {
-      "main": "./dist/types.js",
+      "default": "./dist/types.js",
       "types": "./dist/types.d.ts"
     }
   },
@@ -95,11 +95,13 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "lint:fix-dry": "eslint --fix-dry-run",
+    "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
     "prepack": "nr build",
     "release": "bumpp && pnpm publish",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.17.4",
     "@limitlesspc/eslint-config": "^0.15.4",
     "@limitlesspc/prettier-config": "^1.4.3",
     "bumpp": "^9.8.1",

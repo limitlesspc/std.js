@@ -54,8 +54,8 @@ export class Mat extends Float32Array {
     }
 
     for (let i = 0, { length } = this; i < length; i++) {
-      const a = this[i];
-      const b = m[i];
+      const a = this[i]!;
+      const b = m[i]!;
       if (!closeTo(a, b, precision)) {
         return false;
       }
@@ -70,7 +70,7 @@ export class Mat extends Float32Array {
     }
 
     for (let i = 0, { length } = this; i < length; i++) {
-      this[i] += m[i] || 0;
+      this[i]! += m[i] || 0;
     }
 
     return this;
@@ -86,7 +86,7 @@ export class Mat extends Float32Array {
     }
 
     for (let i = 0, { length } = this; i < length; i++) {
-      this[i] -= m[i] || 0;
+      this[i]! -= m[i] || 0;
     }
 
     return this;

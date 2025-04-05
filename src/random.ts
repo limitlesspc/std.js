@@ -102,7 +102,7 @@ export function choices<T>(array: ArrayLike<T>, n: uint): T[] | string {
   }
 
   return Array.from<T>({ length: n }).map(
-    () => array[randomInt(array.length - 1)],
+    () => array[randomInt(array.length - 1)]!,
   );
 }
 
