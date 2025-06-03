@@ -48,10 +48,14 @@ export function memoize<P, R>(func: (arg: P) => R): (arg: P) => R {
   };
 }
 
-export function memo<T>(fn: () => T): () => T {
+export interface Memo<Return> {
+  (): Return;
+  invalidate: () => void;
+}
+export function memo<T>(fn: () => T): Memo<T> {
   let cache: T;
   let called = false;
-  return () => {
+  const memoized: Memo<T> = () => {
     if (called) {
       return cache;
     }
@@ -59,6 +63,8 @@ export function memo<T>(fn: () => T): () => T {
     called = true;
     return cache;
   };
+  memoized.invalidate = () => (called = false);
+  return memoized;
 }
 
 export function ttlCache<T>(fn: () => T, ttl: number): () => T {
