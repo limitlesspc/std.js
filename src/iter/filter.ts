@@ -1,4 +1,4 @@
-import { dual } from "../fn";
+import { reverseCurry } from "../fn";
 import type { AnyRecord, NonFalsy } from "../types";
 
 /**
@@ -20,7 +20,7 @@ export const filter: {
   ): (iter: Iterable<T>) => Generator<S>;
   <T>(iter: Iterable<T>, predicate: (value: T) => unknown): Generator<T>;
   <T>(predicate: (value: T) => unknown): (iter: Iterable<T>) => Generator<T>;
-} = dual(function* filter<T, S extends T>(
+} = reverseCurry(function* filter<T, S extends T>(
   iter: Iterable<T>,
   predicate:
     | ((value: T) => value is S)
@@ -37,7 +37,7 @@ export const filter: {
 export const filterByKey: {
   <T extends AnyRecord>(iter: Iterable<T>, key: keyof T): Generator<T>;
   <T extends AnyRecord>(key: keyof T): (iter: Iterable<T>) => Generator<T>;
-} = dual(function* filterByKey<T extends AnyRecord>(
+} = reverseCurry(function* filterByKey<T extends AnyRecord>(
   iter: Iterable<T>,
   key: keyof T,
 ) {

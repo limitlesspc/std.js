@@ -1,4 +1,4 @@
-import { dual } from "../fn";
+import { reverseCurry } from "../fn";
 import { type uint } from "../types";
 
 export const slidingWindow: {
@@ -13,7 +13,7 @@ export const slidingWindow: {
     size: uint;
     partial?: boolean;
   }): (iter: Iterable<T>) => Generator<T[]>;
-} = dual(function* slidingWindow<T>(
+} = reverseCurry(function* slidingWindow<T>(
   iter: Iterable<T>,
   { size, partial }: { size: uint; partial?: boolean },
 ): Generator<T[]> {

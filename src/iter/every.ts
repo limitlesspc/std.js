@@ -1,4 +1,4 @@
-import { dual } from "../fn";
+import { reverseCurry } from "../fn";
 
 /**
  * Checks if every item in an iterable passes a `predicate`
@@ -8,7 +8,7 @@ import { dual } from "../fn";
 export const every: {
   <T>(iter: Iterable<T>, predicate: (item: T) => unknown): boolean;
   <T>(predicate: (item: T) => unknown): (iter: Iterable<T>) => boolean;
-} = dual(<T>(iter: Iterable<T>, predicate: (item: T) => unknown) => {
+} = reverseCurry(<T>(iter: Iterable<T>, predicate: (item: T) => unknown) => {
   for (const item of iter) {
     if (!predicate(item)) {
       return false;

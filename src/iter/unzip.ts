@@ -1,9 +1,9 @@
-import { dual } from "../fn";
+import { reverseCurry } from "../fn";
 
 export const unzip: {
   <T, U>(iterable: Iterable<readonly [T, U]>): [T[], U[]];
   <T, U>(): (iterable: Iterable<readonly [T, U]>) => [T[], U[]];
-} = dual(<T, U>(iterable: Iterable<readonly [T, U]>): [T[], U[]] => {
+} = reverseCurry(<T, U>(iterable: Iterable<readonly [T, U]>): [T[], U[]] => {
   const array1: T[] = [];
   const array2: U[] = [];
   let i = 0;

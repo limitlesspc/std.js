@@ -1,4 +1,4 @@
-import { dual } from "../fn";
+import { reverseCurry } from "../fn";
 import type { NonFalsy } from "../types";
 
 /**
@@ -29,7 +29,7 @@ export const partition: {
   <T>(
     predicate: (value: T) => unknown,
   ): (iter: Iterable<T>) => [pass: T[], fail: T[]];
-} = dual(
+} = reverseCurry(
   <T, S extends T>(
     iter: Iterable<T>,
     predicate:

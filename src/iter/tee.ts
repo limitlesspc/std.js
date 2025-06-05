@@ -1,4 +1,4 @@
-import { dual } from "../fn";
+import { reverseCurry } from "../fn";
 import type { Repeat } from "../types";
 import { map } from "./map";
 import { range } from "./range";
@@ -15,7 +15,7 @@ export const tee: {
   <T, N extends number = 2>(
     n?: N,
   ): (first: Iterable<T>) => Repeat<IterableIterator<T>, N>;
-} = dual(<T, N extends number = 2>(iter: Iterable<T>, n?: N) => {
+} = reverseCurry(<T, N extends number = 2>(iter: Iterable<T>, n?: N) => {
   const values = [...iter];
   return [...map(range(n ?? 2), () => values[Symbol.iterator]())] as Repeat<
     IterableIterator<T>,

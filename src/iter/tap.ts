@@ -1,4 +1,4 @@
-import { dual } from "../fn";
+import { reverseCurry } from "../fn";
 
 /**
  * Calls a function on each value of an iterable without modifying
@@ -8,7 +8,10 @@ import { dual } from "../fn";
 export const tap: {
   <T>(iter: Iterable<T>, fn: (value: T) => unknown): Generator<T>;
   <T>(fn: (value: T) => unknown): (iter: Iterable<T>) => Generator<T>;
-} = dual(function* tap<T>(iter: Iterable<T>, fn: (value: T) => unknown) {
+} = reverseCurry(function* tap<T>(
+  iter: Iterable<T>,
+  fn: (value: T) => unknown,
+) {
   for (const value of iter) {
     fn(value);
     yield value;

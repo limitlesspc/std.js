@@ -1,4 +1,4 @@
-import { dual } from "../fn";
+import { reverseCurry } from "../fn";
 import { pickByKeys } from "../object";
 import type { AnyRecord } from "../types";
 
@@ -23,7 +23,7 @@ export const pick: {
   <T extends AnyRecord, K extends keyof T>(
     keys: K[],
   ): (iter: Iterable<T>) => Generator<Pick<T, K>>;
-} = dual(function* pick<T extends AnyRecord, K extends keyof T>(
+} = reverseCurry(function* pick<T extends AnyRecord, K extends keyof T>(
   iter: Iterable<T>,
   keys: K | K[],
 ) {

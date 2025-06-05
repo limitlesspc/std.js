@@ -5,8 +5,8 @@
 
 import { type Maybe } from "../types";
 
-export * from "./dual";
 export * from "./pipe";
+export * from "./reverse-curry";
 
 export const noop: () => void = () => {};
 

@@ -1,4 +1,4 @@
-import { dual } from "../fn";
+import { reverseCurry } from "../fn";
 import { type uint } from "../types";
 
 /**
@@ -9,7 +9,7 @@ import { type uint } from "../types";
 export const nth: {
   <T>(iter: Iterable<T>, n: uint): T;
   <T>(n: uint): (iter: Iterable<T>) => T;
-} = dual(<T>(iter: Iterable<T>, n: uint) => {
+} = reverseCurry(<T>(iter: Iterable<T>, n: uint) => {
   let i = 0;
   for (const value of iter) {
     if (i++ === n) {

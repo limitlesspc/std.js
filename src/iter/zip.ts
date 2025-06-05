@@ -1,9 +1,9 @@
-import { dual } from "../fn";
+import { reverseCurry } from "../fn";
 
 export const zip: {
   <T, U>(iterable1: Iterable<T>, iterable2: Iterable<U>): Generator<[T, U]>;
   <T, U>(iterable2: Iterable<U>): (iterable1: Iterable<T>) => Generator<[T, U]>;
-} = dual(function* zip<T, U>(
+} = reverseCurry(function* zip<T, U>(
   iterable1: Iterable<T>,
   iterable2: Iterable<U>,
 ): Generator<[T, U]> {

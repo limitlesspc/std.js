@@ -1,4 +1,4 @@
-import { dual } from "../fn";
+import { reverseCurry } from "../fn";
 import type { Repeat, uint } from "../types";
 
 /**
@@ -10,7 +10,10 @@ import type { Repeat, uint } from "../types";
 export const chunk: {
   <T, N extends uint>(first: Iterable<T>, size: N): Generator<Repeat<T, N>>;
   <T, N extends uint>(size: N): (first: Iterable<T>) => Generator<Repeat<T, N>>;
-} = dual(function* chunk<T, N extends uint>(iter: Iterable<T>, size: N) {
+} = reverseCurry(function* chunk<T, N extends uint>(
+  iter: Iterable<T>,
+  size: N,
+) {
   let result: T[] = [];
   for (const value of iter) {
     result.push(value);
