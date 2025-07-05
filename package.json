@@ -101,9 +101,8 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.17.4",
     "@limitlesspc/eslint-config": "^0.15.4",
-    "@limitlesspc/prettier-config": "^1.4.3",
+    "@limitlesspc/prettier-config": "^2.0.0",
     "bumpp": "^9.8.1",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2",
