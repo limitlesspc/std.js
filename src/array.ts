@@ -261,6 +261,39 @@ export function includesAll<T, U>(a: readonly T[], b: readonly U[]): boolean {
  * @example
  * ```ts
  * const array = [
+ *   1,
+ *   3,
+ *   2,
+ *   4,
+ *   1,
+ *   2,
+ * ];
+ * console.log(dedupe(array)); // [
+ * // 1,
+ * // 3,
+ * // 2,
+ * // 4
+ * // ]
+ */
+export function dedupe<T>(array: Iterable<T>): T[] {
+  const result: T[] = [];
+  const seen = new Set<T>();
+  for (const item of array) {
+    if (!seen.has(item)) {
+      result.push(item);
+      seen.add(item);
+    }
+  }
+  return result;
+}
+
+/**
+ * Returns a new array with items with a unique key
+ * @param array
+ * @param key
+ * @example
+ * ```ts
+ * const array = [
  *   { id: 1, name: "Alice" },
  *   { id: 2, name: "Bob" },
  *   { id: 1, name: "Charlie" },
@@ -268,27 +301,26 @@ export function includesAll<T, U>(a: readonly T[], b: readonly U[]): boolean {
  *   { id: 2, name: "Eve" },
  *   { id: 4, name: "Frank" },
  * ];
- * console.log(dedupe(array, "id")); // [
+ * console.log(dedupeByKey(array, "id")); // [
  * // { id: 1, name: "Alice" },
  * // { id: 2, name: "Bob" },
  * // { id: 3, name: "David" },
  * // { id: 4, name: "Frank" }
  * // ]
  */
-export function dedupe<T extends { [K in keyof T]: T[K] }>(
+export function dedupeByKey<T extends { [K in keyof T]: T[K] }>(
   array: Iterable<T>,
   key: keyof T,
 ): T[] {
   const result: T[] = [];
-  const values = new Set<PropertyKey>();
+  const seen = new Set<PropertyKey>();
   for (const item of array) {
     const value = item[key];
-    if (!values.has(value)) {
+    if (!seen.has(value)) {
       result.push(item);
-      values.add(value);
+      seen.add(value);
     }
   }
-
   return result;
 }
 
