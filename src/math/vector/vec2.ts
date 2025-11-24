@@ -104,11 +104,11 @@ export class Vec2 extends Float32Array implements Vec {
 
   div(x: First, y?: number): this {
     if (typeof x === "number") {
-      this.x *= x;
-      this.y *= y ?? x;
+      this.x /= x;
+      this.y /= y ?? x;
     } else {
-      this.x *= x[0];
-      this.y *= x[1];
+      this.x /= x[0];
+      this.y /= x[1];
     }
 
     return this;
