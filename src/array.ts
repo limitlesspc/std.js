@@ -255,9 +255,8 @@ export function includesAll<T, U>(a: readonly T[], b: readonly U[]): boolean {
 }
 
 /**
- * Returns a new array with items with a unique key
+ * Returns the unique items from an array
  * @param array
- * @param key
  * @example
  * ```ts
  * const array = [
@@ -276,12 +275,35 @@ export function includesAll<T, U>(a: readonly T[], b: readonly U[]): boolean {
  * // ]
  */
 export function dedupe<T>(array: Iterable<T>): T[] {
+  return dedupeBy(array, x => x);
+}
+
+/**
+ * Returns the unique items from an array defined by a function
+ * @param array
+ * @example
+ * ```ts
+ * const array = [
+ *   "cats",
+ *   "cat",
+ *   "dog",
+ *   "dogs",
+ * ];
+ * // Two items are considered the duplicated if they share the same first 3 letters
+ * console.log(dedupeBy(array, item => item.slice(0, 3))); // [
+ * // "cats",
+ * // "dog",
+ * // ]
+ */
+export function dedupeBy<T>(array: Iterable<T>, key: (item: T) => any): T[] {
   const result: T[] = [];
-  const seen = new Set<T>();
+  const seen = new Set();
   for (const item of array) {
-    if (!seen.has(item)) {
+    // eslint-disable-next-line ts/no-unsafe-assignment
+    const value = key(item);
+    if (!seen.has(value)) {
       result.push(item);
-      seen.add(item);
+      seen.add(value);
     }
   }
   return result;
@@ -312,16 +334,7 @@ export function dedupeByKey<T extends { [K in keyof T]: T[K] }>(
   array: Iterable<T>,
   key: keyof T,
 ): T[] {
-  const result: T[] = [];
-  const seen = new Set<PropertyKey>();
-  for (const item of array) {
-    const value = item[key];
-    if (!seen.has(value)) {
-      result.push(item);
-      seen.add(value);
-    }
-  }
-  return result;
+  return dedupeBy(array, x => x[key]);
 }
 
 export function filterByKey<T>(array: readonly T[], key: keyof T): T[] {
