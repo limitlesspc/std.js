@@ -46,7 +46,6 @@ export const partition: {
         fail.push(item);
       }
     }
-
     return [pass, fail] as [T[], T[]];
   },
 );

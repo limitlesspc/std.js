@@ -81,7 +81,6 @@ export class Heap<T> implements Iterable<T> {
         parent = Math.floor((i - 1) / 2);
       }
     }
-
     return data.length;
   }
 

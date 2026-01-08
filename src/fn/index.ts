@@ -3,7 +3,7 @@
  * Common function wrappers and utilities
  */
 
-import type {Maybe} from "../types";
+import type { Maybe } from "../types";
 
 export * from "./pipe";
 export * from "./reverse-curry";

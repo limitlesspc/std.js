@@ -14,6 +14,5 @@ export const some: {
       return true;
     }
   }
-
   return false;
 });

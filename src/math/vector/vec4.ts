@@ -84,10 +84,10 @@ export class Vec4 extends Float32Array implements Vec {
   eq(x: First, y?: number, z?: number, w?: number): boolean {
     if (typeof x === "number") {
       return (
-        this.x === x &&
-        this.y === (y ?? x) &&
-        this.z === (z ?? (y === undefined ? x : 0)) &&
-        this.w === (w ?? (z === undefined ? x : 0))
+        this.x === x
+        && this.y === (y ?? x)
+        && this.z === (z ?? (y === undefined ? x : 0))
+        && this.w === (w ?? (z === undefined ? x : 0))
       );
     }
     return (
@@ -107,7 +107,6 @@ export class Vec4 extends Float32Array implements Vec {
       this.z += x[2];
       this.w += x[3];
     }
-
     return this;
   }
 
@@ -127,7 +126,6 @@ export class Vec4 extends Float32Array implements Vec {
       this.z -= x[2];
       this.w -= x[3];
     }
-
     return this;
   }
 
@@ -147,7 +145,6 @@ export class Vec4 extends Float32Array implements Vec {
       this.z *= x[2];
       this.w *= x[3];
     }
-
     return this;
   }
 
@@ -167,7 +164,6 @@ export class Vec4 extends Float32Array implements Vec {
       this.z /= x[2];
       this.w /= x[3];
     }
-
     return this;
   }
 

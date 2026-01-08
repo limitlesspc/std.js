@@ -44,7 +44,6 @@ export class Mat extends Float32Array {
     for (let i = 0, { length } = this; i < length; i++) {
       m[i] = random(-1, 1);
     }
-
     return m;
   }
 
@@ -60,7 +59,6 @@ export class Mat extends Float32Array {
         return false;
       }
     }
-
     return true;
   }
 
@@ -72,7 +70,6 @@ export class Mat extends Float32Array {
     for (let i = 0, { length } = this; i < length; i++) {
       this[i]! += m[i] || 0;
     }
-
     return this;
   }
 
@@ -88,7 +85,6 @@ export class Mat extends Float32Array {
     for (let i = 0, { length } = this; i < length; i++) {
       this[i]! -= m[i] || 0;
     }
-
     return this;
   }
 
@@ -108,7 +104,6 @@ export class Mat extends Float32Array {
       for (let i = 0, { length } = m1; i < length; i++) {
         ans[i] = (m1[i] ?? 1) * m2;
       }
-
       return ans;
     }
 
@@ -124,7 +119,6 @@ export class Mat extends Float32Array {
         ans[i * cols + j] = sum;
       }
     }
-
     return ans;
   }
 
@@ -140,7 +134,6 @@ export class Mat extends Float32Array {
         ans[j * cols + i] = m[i * cols + j] || 0;
       }
     }
-
     return ans;
   }
 }

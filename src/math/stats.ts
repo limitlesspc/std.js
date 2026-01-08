@@ -24,7 +24,6 @@ export function min(iter: Iterable<number>): number {
       min = value;
     }
   }
-
   return min;
 }
 
@@ -46,7 +45,6 @@ export function max(iter: Iterable<number>): number {
       max = value;
     }
   }
-
   return max;
 }
 
@@ -73,7 +71,6 @@ export function minmax(iter: Iterable<number>): [min: number, max: number] {
       max = value;
     }
   }
-
   return [min, max];
 }
 
@@ -93,7 +90,6 @@ export function sum(iter: Iterable<number>): number {
   for (const value of iter) {
     total += value;
   }
-
   return total;
 }
 
@@ -113,7 +109,6 @@ export function product(iter: Iterable<number>): number {
   for (const value of iter) {
     total *= value;
   }
-
   return total;
 }
 
@@ -135,7 +130,6 @@ export function avg(iter: Iterable<number>): number {
     total += value;
     count++;
   }
-
   return total / count;
 }
 

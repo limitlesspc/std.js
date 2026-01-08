@@ -56,7 +56,6 @@ export function shuffle<T extends ArrayLike<unknown>>(array: T): T {
     const j = randomInt(i);
     swap(array, i, j);
   }
-
   return array;
 }
 
@@ -97,7 +96,6 @@ export function choices<T>(array: ArrayLike<T>, n: uint): T[] | string {
     for (let i = 0; i < n; i++) {
       result += choice(array);
     }
-
     return result;
   }
 
@@ -122,6 +120,5 @@ export function sample<T>(array: ArrayLike<T> & Iterable<T>, n: uint): T[] {
       result[i] = item;
     }
   }
-
   return result;
 }

@@ -178,6 +178,5 @@ export const asyncPipe: AsyncPipe = async <T>(
   for (const fn of fns) {
     x = fn(await x);
   }
-
   return x;
 };

@@ -75,7 +75,6 @@ export class SortedArray<T> implements Iterable<T> {
         return mid;
       }
     }
-
     return -1;
   }
 

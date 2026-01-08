@@ -40,7 +40,6 @@ export class Rational {
       this.numerator = -this.numerator;
       this.denominator = -this.denominator;
     }
-
     return this;
   }
 

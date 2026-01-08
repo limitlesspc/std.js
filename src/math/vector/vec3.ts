@@ -77,9 +77,9 @@ export class Vec3 extends Float32Array implements Vec {
   eq(x: First, y?: number, z?: number): boolean {
     if (typeof x === "number") {
       return (
-        this.x === x &&
-        this.y === (y ?? x) &&
-        this.z === (z ?? (y === undefined ? x : 0))
+        this.x === x
+        && this.y === (y ?? x)
+        && this.z === (z ?? (y === undefined ? x : 0))
       );
     }
     return this.x === x[0] && this.y === x[1] && this.z === x[2];
@@ -99,7 +99,6 @@ export class Vec3 extends Float32Array implements Vec {
       this.y += x[1];
       this.z += x[2];
     }
-
     return this;
   }
 
@@ -117,7 +116,6 @@ export class Vec3 extends Float32Array implements Vec {
       this.y -= x[1];
       this.z -= x[2];
     }
-
     return this;
   }
 
@@ -135,7 +133,6 @@ export class Vec3 extends Float32Array implements Vec {
       this.y *= x[1];
       this.z *= x[2];
     }
-
     return this;
   }
 
@@ -153,7 +150,6 @@ export class Vec3 extends Float32Array implements Vec {
       this.y /= x[1];
       this.z /= x[2];
     }
-
     return this;
   }
 

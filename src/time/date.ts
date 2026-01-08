@@ -82,9 +82,9 @@ export const getYesterday = (): Date =>
  */
 export function sameDay(a: Date, b: Date) {
   return (
-    a.getDate() === b.getDate() &&
-    a.getMonth() === b.getMonth() &&
-    a.getFullYear() === b.getFullYear()
+    a.getDate() === b.getDate()
+    && a.getMonth() === b.getMonth()
+    && a.getFullYear() === b.getFullYear()
   );
 }
 

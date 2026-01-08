@@ -62,7 +62,6 @@ export class Vec2 extends Float32Array implements Vec {
       this.x += x[0];
       this.y += x[1];
     }
-
     return this;
   }
 
@@ -78,7 +77,6 @@ export class Vec2 extends Float32Array implements Vec {
       this.x -= x[0];
       this.y -= x[1];
     }
-
     return this;
   }
 
@@ -94,7 +92,6 @@ export class Vec2 extends Float32Array implements Vec {
       this.x *= x[0];
       this.y *= x[1];
     }
-
     return this;
   }
 
@@ -110,7 +107,6 @@ export class Vec2 extends Float32Array implements Vec {
       this.x /= x[0];
       this.y /= x[1];
     }
-
     return this;
   }
 

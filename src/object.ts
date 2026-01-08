@@ -135,7 +135,6 @@ export function value2Keys<K extends string, T extends string>(
       result[v].push(key);
     }
   }
-
   return result;
 }
 
@@ -180,7 +179,6 @@ export function deepCopy<T>(object: T): T {
       copy[key] = deepCopy(object[key]);
     }
   }
-
   return copy;
 }
 
@@ -200,7 +198,6 @@ export function pickByKeys<T, K extends keyof T>(
       // eslint-disable-next-line ts/no-unsafe-assignment, ts/no-unsafe-member-access
       result[key] = object[key];
     }
-
     return result;
   }
 

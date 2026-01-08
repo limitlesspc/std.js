@@ -56,7 +56,6 @@ export class UnorderedArray<T> extends Array<T> {
         spliced.push(removed);
       }
     }
-
     return spliced;
   }
 

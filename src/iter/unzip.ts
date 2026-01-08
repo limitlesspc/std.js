@@ -12,6 +12,5 @@ export const unzip: {
     array2[i] = b;
     i++;
   }
-
   return [array1, array2];
 });

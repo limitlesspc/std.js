@@ -1,5 +1,5 @@
 import { reverseCurry } from "../fn";
-import type {uint} from "../types";
+import type { uint } from "../types";
 
 /**
  * Gets a certain value from an iterable based on sequence number

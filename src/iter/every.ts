@@ -14,6 +14,5 @@ export const every: {
       return false;
     }
   }
-
   return true;
 });

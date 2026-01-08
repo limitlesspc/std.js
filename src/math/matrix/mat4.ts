@@ -53,7 +53,6 @@ export class Mat4 extends Float32Array {
         return false;
       }
     }
-
     return true;
   }
 
@@ -61,7 +60,6 @@ export class Mat4 extends Float32Array {
     for (let i = 0; i < 16; i++) {
       this[i]! += m[i]!;
     }
-
     return this;
   }
 
@@ -73,7 +71,6 @@ export class Mat4 extends Float32Array {
     for (let i = 0; i < 16; i++) {
       this[i]! -= m[i]!;
     }
-
     return this;
   }
 
@@ -92,7 +89,6 @@ export class Mat4 extends Float32Array {
       for (let i = 0; i < 16; i++) {
         ans[i]! *= m2;
       }
-
       return ans;
     }
 
@@ -206,10 +202,10 @@ export class Mat4 extends Float32Array {
       p = 0,
     ] = this;
     return (
-      a * mat3([f, g, h, j, k, l, n, o, p]).det() -
-      b * mat3([e, g, h, i, k, l, m, o, p]).det() +
-      c * mat3([e, f, h, i, j, l, m, n, p]).det() -
-      d * mat3([e, f, g, i, j, k, m, n, o]).det()
+      a * mat3([f, g, h, j, k, l, n, o, p]).det()
+      - b * mat3([e, g, h, i, k, l, m, o, p]).det()
+      + c * mat3([e, f, h, i, j, l, m, n, p]).det()
+      - d * mat3([e, f, g, i, j, k, m, n, o]).det()
     );
   }
 

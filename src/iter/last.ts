@@ -7,6 +7,5 @@ export function last<T>(iter: Iterable<T>): T | undefined {
   for (const value of iter) {
     last = value;
   }
-
   return last;
 }

@@ -220,7 +220,6 @@ export function equal<T>(a: readonly T[], b: readonly T[]): boolean {
       return false;
     }
   }
-
   return true;
 }
 
@@ -375,7 +374,6 @@ export function sortByKeys<T, K extends keyof T>(
         return cmp;
       }
     }
-
     return 0;
   });
 }

@@ -62,7 +62,6 @@ export class EventEmitter<Events extends AnyRecord = AnyRecord> {
         listener(data);
       }
     }
-
     return this;
   }
 

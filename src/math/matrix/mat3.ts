@@ -49,7 +49,6 @@ export class Mat3 extends Float32Array {
         return false;
       }
     }
-
     return true;
   }
 
@@ -57,7 +56,6 @@ export class Mat3 extends Float32Array {
     for (let i = 0; i < 9; i++) {
       this[i]! += m[i]!;
     }
-
     return this;
   }
 
@@ -69,7 +67,6 @@ export class Mat3 extends Float32Array {
     for (let i = 0; i < 9; i++) {
       this[i]! -= m[i]!;
     }
-
     return this;
   }
 
@@ -88,7 +85,6 @@ export class Mat3 extends Float32Array {
       for (let i = 0; i < 9; i++) {
         ans[i]! *= m2;
       }
-
       return ans;
     }
 

@@ -9,6 +9,5 @@ export function count<T>(iter: Iterable<T>): uint {
   for (const _ of iter) {
     count++;
   }
-
   return count;
 }

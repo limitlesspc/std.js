@@ -1,5 +1,5 @@
 import { reverseCurry } from "../fn";
-import type {AnyRecord} from "../types";
+import type { AnyRecord } from "../types";
 
 export const associateBy: {
   <T extends AnyRecord, K extends keyof T>(
@@ -15,7 +15,6 @@ export const associateBy: {
     for (const item of array) {
       map[item[key]] = item;
     }
-
     return map;
   },
 );

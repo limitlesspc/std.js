@@ -40,7 +40,6 @@ export class Complex implements ComplexLike {
       this.r += c.r;
       this.i += c.i;
     }
-
     return this;
   }
 
@@ -55,7 +54,6 @@ export class Complex implements ComplexLike {
       this.r -= c.r;
       this.i -= c.i;
     }
-
     return this;
   }
 
@@ -72,7 +70,6 @@ export class Complex implements ComplexLike {
       this.r = r * c.r - i * c.i;
       this.i = r * c.i + i * c.r;
     }
-
     return this;
   }
 
@@ -88,7 +85,6 @@ export class Complex implements ComplexLike {
       const { conj: conjugate } = c;
       this.mul(conjugate).div(c.mul(conjugate).r);
     }
-
     return this;
   }
 

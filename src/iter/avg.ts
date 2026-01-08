@@ -5,6 +5,5 @@ export function avg(iter: Iterable<number>): number {
     total += value;
     count++;
   }
-
   return total / count;
 }

@@ -138,7 +138,6 @@ export function factorial(n: uint): number {
   for (let i = n; i > 1; i--) {
     total *= i;
   }
-
   return total;
 }
 
@@ -160,7 +159,6 @@ export function gcd(a: uint, b: uint): number {
     b = a % b;
     a = temp;
   }
-
   return a;
 }
 
@@ -172,7 +170,6 @@ export function fibonacci(n: uint): number {
     a = b;
     b += temp;
   }
-
   return a;
 }
 
@@ -248,6 +245,5 @@ export function dot(a: Iterable<number>, b: Iterable<number>): number {
 
     total += (result1.value || 0) * (result2.value || 0);
   }
-
   return total;
 }
