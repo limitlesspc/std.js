@@ -1,12 +1,13 @@
-import { unorderedRemove } from "../../array";
-import { max } from "../../math/stats";
-import { shuffle } from "../../random";
-import { MaxHeap } from "./max-heap";
+import { unorderedRemove } from "../array";
+import { descend } from "../cmp";
+import { max } from "../math/stats";
+import { shuffle } from "../random";
+import { Heap } from "./heap";
 import { bench, describe } from "vitest";
 
 describe("find max", () => {
   const array = shuffle(Array.from({ length: 1_000_000 }, (_, i) => i));
-  const heap = new MaxHeap(array);
+  const heap = new Heap(descend, array);
 
   bench("linear", () => {
     max(array);
@@ -46,7 +47,7 @@ describe("remove max until empty", () => {
     },
   );
 
-  let heap: MaxHeap<number>;
+  let heap: Heap<number>;
   bench(
     "heap",
     () => {
@@ -58,7 +59,7 @@ describe("remove max until empty", () => {
       iterations: 10,
       time: 0,
       setup() {
-        heap = new MaxHeap(shuffle(array));
+        heap = new Heap(descend, shuffle(array));
       },
     },
   );

@@ -102,7 +102,6 @@
   "devDependencies": {
     "@limitlesspc/eslint-config": "^0.18.4",
     "@limitlesspc/prettier-config": "^1.2.1",
-    "@vitest/coverage-v8": "4.0.16",
     "bumpp": "^10.3.2",
     "eslint": "^9.39.2",
     "prettier": "^3.7.4",

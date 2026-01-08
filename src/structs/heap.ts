@@ -1,6 +1,6 @@
-import { swap } from "../../array";
-import type { Compare } from "../../cmp";
-import type { uint } from "../../types";
+import { swap } from "../array";
+import type { Compare } from "../cmp";
+import type { uint } from "../types";
 
 /**
  * ## Binary Heap

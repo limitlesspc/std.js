@@ -3,9 +3,6 @@
  * Several data structure implementations
  */
 
-export * from "./doubly-linked-list";
-export * from "./heaps";
-export * from "./linked-list";
-export * from "./queue";
+export * from "./heap";
 export * from "./sorted-array";
 export * from "./unordered-array";
