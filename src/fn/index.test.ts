@@ -2,8 +2,8 @@ import { identity, memo, memoize, once } from ".";
 import { expect, test } from "vitest";
 
 test("identity", () => {
-  expect(identity(1)).toEqual(1);
-  expect(identity(false)).toEqual(false);
+  expect(identity(1)).toBe(1);
+  expect(identity(false)).toBe(false);
 });
 
 test("once", () => {
@@ -11,9 +11,9 @@ test("once", () => {
   const increment = () => ++count;
   const fn = once(increment);
   fn();
-  expect(count).toEqual(1);
+  expect(count).toBe(1);
   fn();
-  expect(count).toEqual(1);
+  expect(count).toBe(1);
 });
 
 test("memoize", () => {
@@ -24,21 +24,21 @@ test("memoize", () => {
   }
 
   const fn = memoize(timesTwo);
-  expect(fn(2)).toEqual(4);
-  expect(count).toEqual(1);
-  expect(fn(2)).toEqual(4);
-  expect(count).toEqual(1);
+  expect(fn(2)).toBe(4);
+  expect(count).toBe(1);
+  expect(fn(2)).toBe(4);
+  expect(count).toBe(1);
 
-  expect(fn(3)).toEqual(6);
-  expect(count).toEqual(2);
-  expect(fn(3)).toEqual(6);
-  expect(count).toEqual(2);
+  expect(fn(3)).toBe(6);
+  expect(count).toBe(2);
+  expect(fn(3)).toBe(6);
+  expect(count).toBe(2);
 });
 
 test("memo", () => {
   let count = 0;
   const increment = () => ++count;
   const fn = memo(increment);
-  expect(fn()).toEqual(1);
-  expect(fn()).toEqual(1);
+  expect(fn()).toBe(1);
+  expect(fn()).toBe(1);
 });

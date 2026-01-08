@@ -53,7 +53,7 @@ export function replace(str: string, replacements: Record<string, string>) {
     Object.keys(replacements).map(escapeRegex).join("|"),
     "g",
   );
-  return str.replace(regex, matched => replacements[matched] || "");
+  return str.replace(regex, matched => replacements[matched]!);
 }
 
 export const escapeInRegexRegex = /[$()*+./?[\\\]^{|}-]/g;

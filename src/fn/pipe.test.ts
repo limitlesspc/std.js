@@ -1,5 +1,5 @@
 import { collect, every, filter } from "../iter";
-import { pipe } from "./pipe";
+import { asyncPipe, pipe } from "./pipe";
 import { expect, test } from "vitest";
 
 test(() => {
@@ -48,4 +48,13 @@ test(() => {
     every(x => !(x % 2)),
   );
   expect(!allEven);
+});
+
+test("asyncPipe", async () => {
+  const result = await asyncPipe(
+    1,
+    async x => x + 3,
+    async x => x * 2,
+  );
+  expect(result).toBe(8);
 });

@@ -84,7 +84,8 @@ export class SortedArray<T> implements Iterable<T> {
    * @param value
    */
   has(value: T): boolean {
-    return this.data.includes(value);
+    // eslint-disable-next-line unicorn/prefer-includes
+    return this.indexOf(value) !== -1;
   }
 
   /**

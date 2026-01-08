@@ -15,7 +15,7 @@ export function listItems(items: string[], conjunction = "and"): string {
     }
 
     case 1: {
-      return items[0] || "";
+      return items[0]!;
     }
 
     case 2: {
