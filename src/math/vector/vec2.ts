@@ -122,20 +122,20 @@ export class Vec2 extends Float32Array implements Vec {
     return vec2(a[0] * b[0] + c[0], a[1] * b[1] + c[1]);
   }
 
-  lt(x: ReadonlyVec2Like): Vec2 {
-    return vec2(this.x < x[0] ? 1 : 0, this.y < x[1] ? 1 : 0);
+  lt(v: ReadonlyVec2Like): Vec2 {
+    return vec2(this.x < v[0] ? 1 : 0, this.y < v[1] ? 1 : 0);
   }
 
-  lte(x: ReadonlyVec2Like): Vec2 {
-    return vec2(this.x <= x[0] ? 1 : 0, this.y <= x[1] ? 1 : 0);
+  lte(v: ReadonlyVec2Like): Vec2 {
+    return vec2(this.x <= v[0] ? 1 : 0, this.y <= v[1] ? 1 : 0);
   }
 
-  gt(x: ReadonlyVec2Like): Vec2 {
-    return vec2(this.x > x[0] ? 1 : 0, this.y > x[1] ? 1 : 0);
+  gt(v: ReadonlyVec2Like): Vec2 {
+    return vec2(this.x > v[0] ? 1 : 0, this.y > v[1] ? 1 : 0);
   }
 
-  gte(x: ReadonlyVec2Like): Vec2 {
-    return vec2(this.x >= x[0] ? 1 : 0, this.y >= x[1] ? 1 : 0);
+  gte(v: ReadonlyVec2Like): Vec2 {
+    return vec2(this.x >= v[0] ? 1 : 0, this.y >= v[1] ? 1 : 0);
   }
 
   mag(): number {

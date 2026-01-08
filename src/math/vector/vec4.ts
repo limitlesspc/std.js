@@ -184,39 +184,39 @@ export class Vec4 extends Float32Array implements Vec {
     );
   }
 
-  lt(x: ReadonlyVec4Like): Vec4 {
+  lt(v: ReadonlyVec4Like): Vec4 {
     return vec4(
-      this.x < x[0] ? 1 : 0,
-      this.y < x[1] ? 1 : 0,
-      this.z < x[2] ? 1 : 0,
-      this.w < x[3] ? 1 : 0,
+      this.x < v[0] ? 1 : 0,
+      this.y < v[1] ? 1 : 0,
+      this.z < v[2] ? 1 : 0,
+      this.w < v[3] ? 1 : 0,
     );
   }
 
-  lte(x: ReadonlyVec4Like): Vec4 {
+  lte(v: ReadonlyVec4Like): Vec4 {
     return vec4(
-      this.x <= x[0] ? 1 : 0,
-      this.y <= x[1] ? 1 : 0,
-      this.z <= x[2] ? 1 : 0,
-      this.w <= x[3] ? 1 : 0,
+      this.x <= v[0] ? 1 : 0,
+      this.y <= v[1] ? 1 : 0,
+      this.z <= v[2] ? 1 : 0,
+      this.w <= v[3] ? 1 : 0,
     );
   }
 
-  gt(x: ReadonlyVec4Like): Vec4 {
+  gt(v: ReadonlyVec4Like): Vec4 {
     return vec4(
-      this.x > x[0] ? 1 : 0,
-      this.y > x[1] ? 1 : 0,
-      this.z > x[2] ? 1 : 0,
-      this.w > x[3] ? 1 : 0,
+      this.x > v[0] ? 1 : 0,
+      this.y > v[1] ? 1 : 0,
+      this.z > v[2] ? 1 : 0,
+      this.w > v[3] ? 1 : 0,
     );
   }
 
-  gte(x: ReadonlyVec4Like): Vec4 {
+  gte(v: ReadonlyVec4Like): Vec4 {
     return vec4(
-      this.x >= x[0] ? 1 : 0,
-      this.y >= x[1] ? 1 : 0,
-      this.z >= x[2] ? 1 : 0,
-      this.w >= x[3] ? 1 : 0,
+      this.x >= v[0] ? 1 : 0,
+      this.y >= v[1] ? 1 : 0,
+      this.z >= v[2] ? 1 : 0,
+      this.w >= v[3] ? 1 : 0,
     );
   }
 

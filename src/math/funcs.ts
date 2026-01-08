@@ -10,22 +10,6 @@ export function isNumber(x: unknown): x is number {
 }
 
 /**
- * Determines if a value is a finite number other than `NaN`
- * @param x
- */
-export function isReal(x: unknown): x is number {
-  return isNumber(x) && Number.isFinite(x);
-}
-
-/**
- * Determines if a value is an integer
- * @param x
- */
-export function isInteger(x: unknown): x is int {
-  return Number.isInteger(x);
-}
-
-/**
  * Rounds `x` to the nearest multiple of `n`
  * @param x the number to round
  * @param n the multiple to round to
@@ -93,12 +77,8 @@ export function overlap(
 }
 
 /** Returns which number (a or b) is closer to x */
-export function closer(
-  x: number,
-  a: [number, number],
-  b: [number, number],
-): number {
-  return Math.abs(x - a[0]) < Math.abs(x - b[0]) ? a[1] : b[1];
+export function closer(x: number, a: number, b: number): number {
+  return Math.abs(x - a) < Math.abs(x - b) ? a : b;
 }
 
 export function round(n: number, precision: int = 0): number {
@@ -141,21 +121,35 @@ export function factorial(n: uint): number {
   return total;
 }
 
+/**
+ * Logarithm using any base
+ * @param base the logarithm's base
+ * @param x the number to take the logarithm of
+ * @returns the exponent which the base is raised to, to equal x
+ */
 export function log(base: number, x: number): number {
   return Math.log(x) / Math.log(base);
 }
 
+/**
+ * Natural logarithm, or log base e
+ * Simply an alias for `Math.log`
+ */
 export const ln = Math.log;
 
 /**
- * Calculates the greatest common factor between the numbers
+ * Calculates the greatest common factor between two numbers
  * a and b using the [Euclidean algorithm](https://www.wikiwand.com/en/Euclidean_algorithm)
  * @param a a number
  * @param b a number
  */
-export function gcd(a: uint, b: uint): number {
+export function gcd(a: uint, b: uint): uint;
+export function gcd(a: bigint, b: bigint): bigint;
+export function gcd(a: uint | bigint, b: uint | bigint): uint | bigint {
   while (b) {
     const temp = b;
+    // @ts-expect-error TS won't realize numbers and bigints won't mix here
+    // eslint-disable-next-line ts/no-unsafe-assignment
     b = a % b;
     a = temp;
   }

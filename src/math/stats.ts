@@ -4,7 +4,7 @@
  */
 
 import { pipe } from "../fn/pipe";
-import { collect, filter, map, tee } from "../iter";
+import { collect, filter, map } from "../iter";
 
 /**
  * Returns the minimum value in an iterable of numbers
@@ -118,9 +118,9 @@ export function product(iter: Iterable<number>): number {
  * @returns The average
  * @example
  * ```ts
- * const numbers = [1, 2, 3, 4, 5];
+ * const numbers = [1, 2, 3, 4];
  * const average = avg(numbers);
- * console.log(average); // 3
+ * console.log(average); // 2.5
  * ```
  */
 export function avg(iter: Iterable<number>): number {
@@ -154,10 +154,11 @@ export function median(array: number[]): number {
     return 0;
   }
   const sorted = array.toSorted((a, b) => a - b);
+  const halfLen = length / 2;
   if (length % 2) {
-    return sorted[length / 2]!;
+    return sorted[Math.floor(halfLen)]!;
   }
-  return (sorted[length / 2 - 1]! + sorted[length / 2]!) / 2;
+  return (sorted[halfLen - 1]! + sorted[halfLen]!) / 2;
 }
 
 /**
@@ -192,24 +193,25 @@ export function mode<T>(iter: Iterable<T>): T[] {
 }
 
 /**
- * Returns the variance of an iterable of numbers
+ * Returns the variance of an array of numbers
  * @param iter The iterable of numbers
  * @returns The variance
  * @example
  * ```ts
  * const numbers = [1, 2, 3, 4, 5];
  * const variance = variance(numbers);
- * console.log(variance); // 2.5
+ * console.log(variance); // 2
  * ```
  */
 export function variance(iter: Iterable<number>): number {
-  const [a, b] = tee(iter);
-  const m = avg(a);
-  return avg(
-    map(b, n => {
-      const d = n - m;
+  const mean = avg(iter);
+  return pipe(
+    iter,
+    map(x => {
+      const d = x - mean;
       return d * d;
     }),
+    avg,
   );
 }
 
@@ -221,7 +223,7 @@ export function variance(iter: Iterable<number>): number {
  * ```ts
  * const numbers = [1, 2, 3, 4, 5];
  * const stddev = stddev(numbers);
- * console.log(stddev); // 1.5811388300841898
+ * console.log(stddev); // 1.414
  * ```
  */
 export function stddev(iter: Iterable<number>): number {
@@ -240,7 +242,10 @@ export function stddev(iter: Iterable<number>): number {
  * ```
  */
 export function meanAbsDev(iter: Iterable<number>): number {
-  const [a, b] = tee(iter);
-  const m = avg(a);
-  return avg(map(b, n => n - m));
+  const mean = avg(iter);
+  return pipe(
+    iter,
+    map(x => Math.abs(x - mean)),
+    avg,
+  );
 }

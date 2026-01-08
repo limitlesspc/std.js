@@ -1,12 +1,4 @@
-function gcd(a: bigint, b: bigint) {
-  while (b) {
-    const temp = b;
-    b = a % b;
-    a = temp;
-  }
-
-  return a;
-}
+import { gcd } from "./funcs";
 
 /** An object that represents a rational number. */
 export interface RationalLike {

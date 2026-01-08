@@ -165,35 +165,35 @@ export class Vec3 extends Float32Array implements Vec {
     return vec3(a[0] * b[0] + c[0], a[1] * b[1] + c[1], a[2] * b[2] + c[2]);
   }
 
-  lt(x: ReadonlyVec3Like): Vec3 {
+  lt(v: ReadonlyVec3Like): Vec3 {
     return vec3(
-      this.x < x[0] ? 1 : 0,
-      this.y < x[1] ? 1 : 0,
-      this.z < x[2] ? 1 : 0,
+      this.x < v[0] ? 1 : 0,
+      this.y < v[1] ? 1 : 0,
+      this.z < v[2] ? 1 : 0,
     );
   }
 
-  lte(x: ReadonlyVec3Like): Vec3 {
+  lte(v: ReadonlyVec3Like): Vec3 {
     return vec3(
-      this.x <= x[0] ? 1 : 0,
-      this.y <= x[1] ? 1 : 0,
-      this.z <= x[2] ? 1 : 0,
+      this.x <= v[0] ? 1 : 0,
+      this.y <= v[1] ? 1 : 0,
+      this.z <= v[2] ? 1 : 0,
     );
   }
 
-  gt(x: ReadonlyVec3Like): Vec3 {
+  gt(v: ReadonlyVec3Like): Vec3 {
     return vec3(
-      this.x > x[0] ? 1 : 0,
-      this.y > x[1] ? 1 : 0,
-      this.z > x[2] ? 1 : 0,
+      this.x > v[0] ? 1 : 0,
+      this.y > v[1] ? 1 : 0,
+      this.z > v[2] ? 1 : 0,
     );
   }
 
-  gte(x: ReadonlyVec3Like): Vec3 {
+  gte(v: ReadonlyVec3Like): Vec3 {
     return vec3(
-      this.x >= x[0] ? 1 : 0,
-      this.y >= x[1] ? 1 : 0,
-      this.z >= x[2] ? 1 : 0,
+      this.x >= v[0] ? 1 : 0,
+      this.y >= v[1] ? 1 : 0,
+      this.z >= v[2] ? 1 : 0,
     );
   }
 
