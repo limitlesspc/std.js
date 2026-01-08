@@ -174,33 +174,6 @@ export const celsius = (fahrenheit: number) => (fahrenheit - 32) * (5 / 9);
 export const fahrenheit = (celsius: number) => celsius * (9 / 5) + 32;
 
 /**
- * @param points a list of (x,y) points
- * @returns the line of best fit in terms of m and b in the form y = mx + b
- */
-export function lineOfBestFit(
-  points: Array<{ x: number; y: number }>,
-): [m: number, b: number] {
-  const xs = points.map(p => p.x);
-  const ys = points.map(p => p.y);
-
-  const meanX = avg(xs);
-  const meanY = avg(ys);
-
-  let n = 0;
-  let den = 0;
-  for (let i = 0; i < points.length; i++) {
-    const x = xs[i]!;
-    const y = ys[i]!;
-    n += (x - meanX) * (y - meanY);
-    den += (x - meanX) ** 2;
-  }
-
-  const m = n / den;
-  const b = meanY - m * meanX;
-  return [m, b];
-}
-
-/**
  * Calculates the number of ways to choose `k` items from `n` items without repeating and with ordering
  * @param n the number of items
  * @param k the number of choices being made
