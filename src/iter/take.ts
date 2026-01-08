@@ -1,5 +1,5 @@
 import { reverseCurry } from "../fn";
-import { type uint } from "../types";
+import type {uint} from "../types";
 
 /**
  * Take the first n values from an iterable

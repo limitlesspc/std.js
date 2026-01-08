@@ -5,82 +5,79 @@
   "packageManager": "pnpm@10.25.0",
   "description": "A standard library for JavaScript",
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
   "exports": {
     "./package.json": "./package.json",
     "./async": {
-      "default": "./dist/async/index.js",
-      "types": "./dist/async/index.d.ts"
+      "types": "./dist/async/index.d.ts",
+      "default": "./dist/async/index.js"
     },
     "./cmath": {
-      "default": "./dist/cmath/index.js",
-      "types": "./dist/cmath/index.d.ts"
+      "types": "./dist/cmath/index.d.ts",
+      "default": "./dist/cmath/index.js"
     },
     "./fn": {
-      "default": "./dist/fn/index.js",
-      "types": "./dist/fn/index.d.ts"
+      "types": "./dist/fn/index.d.ts",
+      "default": "./dist/fn/index.js"
     },
     "./gfx": {
-      "default": "./dist/gfx/index.js",
-      "types": "./dist/gfx/index.d.ts"
+      "types": "./dist/gfx/index.d.ts",
+      "default": "./dist/gfx/index.js"
     },
     "./iter": {
-      "default": "./dist/iter/index.js",
-      "types": "./dist/iter/index.d.ts"
+      "types": "./dist/iter/index.d.ts",
+      "default": "./dist/iter/index.js"
     },
     "./math": {
-      "default": "./dist/math/index.js",
-      "types": "./dist/math/index.d.ts"
+      "types": "./dist/math/index.d.ts",
+      "default": "./dist/math/index.js"
     },
     "./string": {
-      "default": "./dist/string/index.js",
-      "types": "./dist/string/index.d.ts"
+      "types": "./dist/string/index.d.ts",
+      "default": "./dist/string/index.js"
     },
     "./structs": {
-      "default": "./dist/structs/index.js",
-      "types": "./dist/structs/index.d.ts"
+      "types": "./dist/structs/index.d.ts",
+      "default": "./dist/structs/index.js"
     },
     "./time": {
-      "default": "./dist/time/index.js",
-      "types": "./dist/time/index.d.ts"
+      "types": "./dist/time/index.d.ts",
+      "default": "./dist/time/index.js"
     },
     "./array": {
-      "default": "./dist/array.js",
-      "types": "./dist/array.d.ts"
+      "types": "./dist/array.d.ts",
+      "default": "./dist/array.js"
     },
     "./bytes": {
-      "default": "./dist/bytes.js",
-      "types": "./dist/bytes.d.ts"
+      "types": "./dist/bytes.d.ts",
+      "default": "./dist/bytes.js"
     },
     "./cmp": {
-      "default": "./dist/cmp.js",
-      "types": "./dist/cmp.d.ts"
+      "types": "./dist/cmp.d.ts",
+      "default": "./dist/cmp.js"
     },
     "./csv": {
-      "default": "./dist/csv.js",
-      "types": "./dist/csv.d.ts"
+      "types": "./dist/csv.d.ts",
+      "default": "./dist/csv.js"
     },
     "./easing": {
-      "default": "./dist/easing.js",
-      "types": "./dist/easing.d.ts"
+      "types": "./dist/easing.d.ts",
+      "default": "./dist/easing.js"
     },
     "./events": {
-      "default": "./dist/events.js",
-      "types": "./dist/events.d.ts"
+      "types": "./dist/events.d.ts",
+      "default": "./dist/events.js"
     },
     "./object": {
-      "default": "./dist/object.js",
-      "types": "./dist/object.d.ts"
+      "types": "./dist/object.d.ts",
+      "default": "./dist/object.js"
     },
     "./random": {
-      "default": "./dist/random.js",
-      "types": "./dist/random.d.ts"
+      "types": "./dist/random.d.ts",
+      "default": "./dist/random.js"
     },
     "./types": {
-      "default": "./dist/types.js",
-      "types": "./dist/types.d.ts"
+      "types": "./dist/types.d.ts",
+      "default": "./dist/types.js"
     }
   },
   "files": [

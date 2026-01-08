@@ -1,5 +1,5 @@
 import { reverseCurry } from "../fn";
-import { type uint } from "../types";
+import type {uint} from "../types";
 
 export const slidingWindow: {
   <T>(

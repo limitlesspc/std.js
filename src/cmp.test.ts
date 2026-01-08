@@ -5,10 +5,10 @@ import { expect, test } from "vitest";
 
 test("ascend", () => {
   const array = shuffle([...range(100)]);
-  expect(array.sort(ascend)).toEqual(array.sort((a, b) => a - b));
+  expect(array.toSorted(ascend)).toEqual(array.toSorted((a, b) => a - b));
 });
 
 test("descend", () => {
   const array = shuffle([...range(100)]);
-  expect(array.sort(descend)).toEqual(array.sort((a, b) => b - a));
+  expect(array.toSorted(descend)).toEqual(array.toSorted((a, b) => b - a));
 });

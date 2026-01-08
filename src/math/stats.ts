@@ -159,7 +159,7 @@ export function median(array: number[]): number {
   if (!length) {
     return 0;
   }
-  const sorted = [...array].sort((a, b) => a - b);
+  const sorted = array.toSorted((a, b) => a - b);
   if (length % 2) {
     return sorted[length / 2]!;
   }

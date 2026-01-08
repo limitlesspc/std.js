@@ -3,7 +3,6 @@
  * Functions for working with promises
  */
 
-import { Queue } from "../structs";
 import type { AnyFunction, Result, uint } from "../types";
 
 export * from "./queue";
@@ -56,12 +55,10 @@ export async function concurrently<T>(
 ): Promise<T[]> {
   const tasks = [...funcs];
   const results = Array.from<T>({ length: tasks.length });
-  const queue = new Queue(tasks);
-  const length = queue.size;
   let i = 0;
   return new Promise<T[]>(resolve => {
     const next = async () => {
-      const func = queue.dequeue();
+      const func = tasks.shift();
       if (func) {
         results[i++] = await func();
         void next();

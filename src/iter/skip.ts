@@ -1,5 +1,5 @@
 import { reverseCurry } from "../fn";
-import { type uint } from "../types";
+import type {uint} from "../types";
 
 /**
  * Skips over the first `n` values of an iterable

@@ -361,11 +361,11 @@ export function filterByKey<T>(array: readonly T[], key: keyof T): T[] {
  * ```
  */
 export function sortByKeys<T, K extends keyof T>(
-  array: Iterable<T>,
+  array: T[],
   key: MaybeArray<K>,
   compare: Compare<T[K]> = ascend,
 ): T[] {
-  return [...array].sort((a, b) => {
+  return array.toSorted((a, b) => {
     const keys = Array.isArray(key) ? key : [key];
     for (const key of keys) {
       const value1 = a[key];

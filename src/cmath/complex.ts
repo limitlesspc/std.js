@@ -22,7 +22,7 @@ export class Complex implements ComplexLike {
   }
 
   get conj(): Complex {
-    return complex(+this.r, -this.i);
+    return complex(this.r, -this.i);
   }
 
   static fromAngle(angle: number, mag = 1): Complex {

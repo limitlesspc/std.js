@@ -43,7 +43,9 @@ export function splitOnce(
 }
 
 export function reverse(str: string) {
-  return [...str].reverse().join("");
+  const chars = [...str];
+  chars.reverse();
+  return chars.join("");
 }
 
 export function replace(str: string, replacements: Record<string, string>) {

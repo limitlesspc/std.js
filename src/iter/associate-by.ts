@@ -1,5 +1,5 @@
 import { reverseCurry } from "../fn";
-import { type AnyRecord } from "../types";
+import type {AnyRecord} from "../types";
 
 export const associateBy: {
   <T extends AnyRecord, K extends keyof T>(
