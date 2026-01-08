@@ -196,21 +196,3 @@ export function combinations(n: uint, k: uint): number {
   }
   return permutations(n, k) / factorial(k);
 }
-
-export function dot(a: Iterable<number>, b: Iterable<number>): number {
-  const iter1 = a[Symbol.iterator]();
-  const iter2 = b[Symbol.iterator]();
-
-  let total = 0;
-  while (true) {
-    const result1 = iter1.next();
-    const result2 = iter2.next();
-
-    if (result1.done && result2.done) {
-      break;
-    }
-
-    total += (result1.value || 0) * (result2.value || 0);
-  }
-  return total;
-}
