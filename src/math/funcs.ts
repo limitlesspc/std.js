@@ -1,5 +1,5 @@
 import type { int, uint } from "../types";
-import { avg, minmax } from "./stats";
+import { minmax } from "./stats";
 
 /**
  * Determines if a value is a number other than `NaN`
@@ -7,6 +7,18 @@ import { avg, minmax } from "./stats";
  */
 export function isNumber(x: unknown): x is number {
   return typeof x === "number" && !Number.isNaN(x);
+}
+
+/**
+ * Squares a number, or multiplies it by itself
+ * @example
+ * ```ts
+ * sq(3) // 9
+ * sq(36) // 36
+ * ```
+ */
+export function sq(x: number): number {
+  return x * x;
 }
 
 /**
