@@ -59,10 +59,6 @@
       "types": "./dist/csv.d.ts",
       "default": "./dist/csv.js"
     },
-    "./easing": {
-      "types": "./dist/easing.d.ts",
-      "default": "./dist/easing.js"
-    },
     "./events": {
       "types": "./dist/events.d.ts",
       "default": "./dist/events.js"
