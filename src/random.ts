@@ -52,7 +52,7 @@ export function randomInt(min = 0, max?: int) {
  * @returns the original array
  */
 export function shuffle<T extends ArrayLike<unknown>>(array: T): T {
-  for (let { length } = array, i = length - 1; i > 0; i--) {
+  for (let i = array.length - 1; i > 0; i--) {
     const j = randomInt(i);
     swap(array, i, j);
   }
