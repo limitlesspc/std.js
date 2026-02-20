@@ -1,44 +1,32 @@
 import { random } from "../../random";
 import { clamp, lerp } from "../funcs";
-import type { Vec } from "./vec";
 
-export type Vec2Like = [x: number, y: number] | Float32Array;
-export type ReadonlyVec2Like = Readonly<Vec2Like>;
+export interface ReadonlyVec2Like {
+  readonly x: number;
+  readonly y: number;
+}
 type First = ReadonlyVec2Like | number;
 
-export class Vec2 extends Float32Array implements Vec {
-  static readonly BYTE_LENGTH = 2 * Float32Array.BYTES_PER_ELEMENT;
+export class Vec2 {
+  x: number;
+  y: number;
 
   constructor(x: First = 0, y?: number) {
-    super([0, 0]);
     if (typeof x === "number") {
       this.x = x;
       this.y = y ?? x;
     } else {
-      [this[0] = 0, this[1] = 0] = x;
+      this.x = x.x;
+      this.y = x.y;
     }
   }
 
-  /* prettier-ignore */ get x(): number {
-    return this[0] || 0;
-  }
-  /* prettier-ignore */ set x(value: number) {
-    this[0] = value;
-  }
-  /* prettier-ignore */ get y(): number {
-    return this[1] || 0;
-  }
-  /* prettier-ignore */ set y(value: number) {
-    this[1] = value;
-  }
-
-  override toString(): string {
-    const [x, y] = this;
-    return `vec2 <${x}, ${y}>`;
+  toString(): string {
+    return `vec2 <${this.x}, ${this.y}>`;
   }
 
   copy(): Vec2 {
-    return vec2(...this);
+    return vec2(this);
   }
 
   static random(mag = 1): Vec2 {
@@ -51,7 +39,18 @@ export class Vec2 extends Float32Array implements Vec {
     if (typeof x === "number") {
       return this.x === x && this.y === (y ?? x);
     }
-    return this.x === x[0] && this.y === x[1];
+    return this.x === x.x && this.y === x.y;
+  }
+
+  set(x: First, y?: number): this {
+    if (typeof x === "number") {
+      this.x = x;
+      this.y = y ?? x;
+    } else {
+      this.x = x.x;
+      this.y = x.y;
+    }
+    return this;
   }
 
   add(x: First, y?: number): this {
@@ -59,8 +58,8 @@ export class Vec2 extends Float32Array implements Vec {
       this.x += x;
       this.y += y ?? x;
     } else {
-      this.x += x[0];
-      this.y += x[1];
+      this.x += x.x;
+      this.y += x.y;
     }
     return this;
   }
@@ -74,8 +73,8 @@ export class Vec2 extends Float32Array implements Vec {
       this.x -= x;
       this.y -= y ?? x;
     } else {
-      this.x -= x[0];
-      this.y -= x[1];
+      this.x -= x.x;
+      this.y -= x.y;
     }
     return this;
   }
@@ -89,8 +88,8 @@ export class Vec2 extends Float32Array implements Vec {
       this.x *= x;
       this.y *= y ?? x;
     } else {
-      this.x *= x[0];
-      this.y *= x[1];
+      this.x *= x.x;
+      this.y *= x.y;
     }
     return this;
   }
@@ -104,8 +103,8 @@ export class Vec2 extends Float32Array implements Vec {
       this.x /= x;
       this.y /= y ?? x;
     } else {
-      this.x /= x[0];
-      this.y /= x[1];
+      this.x /= x.x;
+      this.y /= x.y;
     }
     return this;
   }
@@ -119,23 +118,23 @@ export class Vec2 extends Float32Array implements Vec {
     b: ReadonlyVec2Like,
     c: ReadonlyVec2Like,
   ): Vec2 {
-    return vec2(a[0] * b[0] + c[0], a[1] * b[1] + c[1]);
+    return vec2(a.x * b.x + c.x, a.y * b.y + c.y);
   }
 
   lt(v: ReadonlyVec2Like): Vec2 {
-    return vec2(this.x < v[0] ? 1 : 0, this.y < v[1] ? 1 : 0);
+    return vec2(this.x < v.x ? 1 : 0, this.y < v.y ? 1 : 0);
   }
 
   lte(v: ReadonlyVec2Like): Vec2 {
-    return vec2(this.x <= v[0] ? 1 : 0, this.y <= v[1] ? 1 : 0);
+    return vec2(this.x <= v.x ? 1 : 0, this.y <= v.y ? 1 : 0);
   }
 
   gt(v: ReadonlyVec2Like): Vec2 {
-    return vec2(this.x > v[0] ? 1 : 0, this.y > v[1] ? 1 : 0);
+    return vec2(this.x > v.x ? 1 : 0, this.y > v.y ? 1 : 0);
   }
 
   gte(v: ReadonlyVec2Like): Vec2 {
-    return vec2(this.x >= v[0] ? 1 : 0, this.y >= v[1] ? 1 : 0);
+    return vec2(this.x >= v.x ? 1 : 0, this.y >= v.y ? 1 : 0);
   }
 
   mag(): number {
@@ -181,17 +180,17 @@ export class Vec2 extends Float32Array implements Vec {
   }
 
   dot(v: ReadonlyVec2Like): number {
-    return this.x * v[0] + this.y * v[1];
+    return this.x * v.x + this.y * v.y;
   }
 
   cross(v: ReadonlyVec2Like): number {
-    return this.x * v[1] - this.y * v[0];
+    return this.x * v.y - this.y * v.x;
   }
 
   lerp(v: ReadonlyVec2Like, norm: number): this {
     const { x, y } = this;
-    this.x = lerp(x, v[0], norm);
-    this.y = lerp(y, v[1], norm);
+    this.x = lerp(x, v.x, norm);
+    this.y = lerp(y, v.y, norm);
     return this;
   }
 
@@ -201,8 +200,8 @@ export class Vec2 extends Float32Array implements Vec {
 
   clamp(min: ReadonlyVec2Like, max: ReadonlyVec2Like): this {
     const { x, y } = this;
-    this.x = clamp(x, min[0], max[0]);
-    this.y = clamp(y, min[1], max[1]);
+    this.x = clamp(x, min.x, max.x);
+    this.y = clamp(y, min.y, max.y);
     return this;
   }
 

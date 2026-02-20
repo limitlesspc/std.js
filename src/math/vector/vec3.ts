@@ -1,70 +1,43 @@
 import { random } from "../../random";
 import { clamp, lerp } from "../funcs";
-import type { Vec } from "./vec";
 
-export type Vec3Like = [x: number, y: number, z: number] | Float32Array;
-export type ReadonlyVec3Like = Readonly<Vec3Like>;
+export interface ReadonlyVec3Like {
+  readonly x: number;
+  readonly y: number;
+  readonly z: number;
+}
 type First = ReadonlyVec3Like | number;
 
-export class Vec3 extends Float32Array implements Vec {
-  static readonly BYTE_LENGTH = 3 * Float32Array.BYTES_PER_ELEMENT;
+export class Vec3 {
+  x: number;
+  y: number;
+  z: number;
 
   constructor(x: First = 0, y?: number, z?: number) {
-    super([0, 0, 0]);
     if (typeof x === "number") {
       this.x = x;
       this.y = y ?? x;
       this.z = z ?? (y === undefined ? x : 0);
     } else {
-      [this[0] = 0, this[1] = 0, this[2] = 0] = x;
+      this.x = x.x;
+      this.y = x.y;
+      this.z = x.z;
     }
   }
 
-  /* prettier-ignore */ get x(): number {
-    return this[0] || 0;
-  }
-  /* prettier-ignore */ set x(value: number) {
-    this[0] = value;
-  }
-  /* prettier-ignore */ get y(): number {
-    return this[1] || 0;
-  }
-  /* prettier-ignore */ set y(value: number) {
-    this[1] = value;
-  }
-  /* prettier-ignore */ get z(): number {
-    return this[2] || 0;
-  }
-  /* prettier-ignore */ set z(value: number) {
-    this[2] = value;
-  }
+  /* prettier-ignore */ get r(): number { return this.x || 0; }
+  /* prettier-ignore */ set r(value: number) { this.x = value; }
+  /* prettier-ignore */ get g(): number { return this.y || 0; }
+  /* prettier-ignore */ set g(value: number) { this.y = value; }
+  /* prettier-ignore */ get b(): number { return this.z || 0; }
+  /* prettier-ignore */ set b(value: number) { this.z = value; }
 
-  /* prettier-ignore */ get r(): number {
-    return this[0] || 0;
-  }
-  /* prettier-ignore */ set r(value: number) {
-    this[0] = value;
-  }
-  /* prettier-ignore */ get g(): number {
-    return this[1] || 0;
-  }
-  /* prettier-ignore */ set g(value: number) {
-    this[1] = value;
-  }
-  /* prettier-ignore */ get b(): number {
-    return this[2] || 0;
-  }
-  /* prettier-ignore */ set b(value: number) {
-    this[2] = value;
-  }
-
-  override toString(): string {
-    const [x, y, z] = this;
-    return `vec3 <${x}, ${y}, ${z}>`;
+  toString(): string {
+    return `vec3 <${this.x}, ${this.y}, ${this.z}>`;
   }
 
   copy(): Vec3 {
-    return vec3(...this);
+    return vec3(this);
   }
 
   static random(mag = 1): Vec3 {
@@ -82,7 +55,20 @@ export class Vec3 extends Float32Array implements Vec {
         && this.z === (z ?? (y === undefined ? x : 0))
       );
     }
-    return this.x === x[0] && this.y === x[1] && this.z === x[2];
+    return this.x === x.x && this.y === x.y && this.z === x.z;
+  }
+
+  set(x: First, y?: number, z?: number): this {
+    if (typeof x === "number") {
+      this.x = x;
+      this.y = y ?? x;
+      this.z = z ?? (y === undefined ? x : 0);
+    } else {
+      this.x = x.x;
+      this.y = x.y;
+      this.z = x.z;
+    }
+    return this;
   }
 
   neg(): Vec3 {
@@ -95,9 +81,9 @@ export class Vec3 extends Float32Array implements Vec {
       this.y += y ?? x;
       this.z += z ?? (y === undefined ? x : 0);
     } else {
-      this.x += x[0];
-      this.y += x[1];
-      this.z += x[2];
+      this.x += x.x;
+      this.y += x.y;
+      this.z += x.z;
     }
     return this;
   }
@@ -112,9 +98,9 @@ export class Vec3 extends Float32Array implements Vec {
       this.y -= y ?? x;
       this.z -= z ?? (y === undefined ? x : 0);
     } else {
-      this.x -= x[0];
-      this.y -= x[1];
-      this.z -= x[2];
+      this.x -= x.x;
+      this.y -= x.y;
+      this.z -= x.z;
     }
     return this;
   }
@@ -129,9 +115,9 @@ export class Vec3 extends Float32Array implements Vec {
       this.y *= y ?? x;
       this.z *= z ?? (y === undefined ? x : 1);
     } else {
-      this.x *= x[0];
-      this.y *= x[1];
-      this.z *= x[2];
+      this.x *= x.x;
+      this.y *= x.y;
+      this.z *= x.z;
     }
     return this;
   }
@@ -146,9 +132,9 @@ export class Vec3 extends Float32Array implements Vec {
       this.y /= y ?? x;
       this.z /= z ?? (y === undefined ? x : 1);
     } else {
-      this.x /= x[0];
-      this.y /= x[1];
-      this.z /= x[2];
+      this.x /= x.x;
+      this.y /= x.y;
+      this.z /= x.z;
     }
     return this;
   }
@@ -162,38 +148,38 @@ export class Vec3 extends Float32Array implements Vec {
     b: ReadonlyVec3Like,
     c: ReadonlyVec3Like,
   ): Vec3 {
-    return vec3(a[0] * b[0] + c[0], a[1] * b[1] + c[1], a[2] * b[2] + c[2]);
+    return vec3(a.x * b.x + c.x, a.y * b.y + c.y, a.z * b.z + c.z);
   }
 
   lt(v: ReadonlyVec3Like): Vec3 {
     return vec3(
-      this.x < v[0] ? 1 : 0,
-      this.y < v[1] ? 1 : 0,
-      this.z < v[2] ? 1 : 0,
+      this.x < v.x ? 1 : 0,
+      this.y < v.y ? 1 : 0,
+      this.z < v.z ? 1 : 0,
     );
   }
 
   lte(v: ReadonlyVec3Like): Vec3 {
     return vec3(
-      this.x <= v[0] ? 1 : 0,
-      this.y <= v[1] ? 1 : 0,
-      this.z <= v[2] ? 1 : 0,
+      this.x <= v.x ? 1 : 0,
+      this.y <= v.y ? 1 : 0,
+      this.z <= v.z ? 1 : 0,
     );
   }
 
   gt(v: ReadonlyVec3Like): Vec3 {
     return vec3(
-      this.x > v[0] ? 1 : 0,
-      this.y > v[1] ? 1 : 0,
-      this.z > v[2] ? 1 : 0,
+      this.x > v.x ? 1 : 0,
+      this.y > v.y ? 1 : 0,
+      this.z > v.z ? 1 : 0,
     );
   }
 
   gte(v: ReadonlyVec3Like): Vec3 {
     return vec3(
-      this.x >= v[0] ? 1 : 0,
-      this.y >= v[1] ? 1 : 0,
-      this.z >= v[2] ? 1 : 0,
+      this.x >= v.x ? 1 : 0,
+      this.y >= v.y ? 1 : 0,
+      this.z >= v.z ? 1 : 0,
     );
   }
 
@@ -241,19 +227,19 @@ export class Vec3 extends Float32Array implements Vec {
 
   dot(v: ReadonlyVec3Like): number {
     const { x, y, z } = this;
-    return x * v[0] + y * v[1] + z * v[2];
+    return x * v.x + y * v.y + z * v.z;
   }
 
   cross(v: ReadonlyVec3Like): Vec3 {
     const { x, y, z } = this;
-    return vec3(y * v[2] - z * v[1], z * v[0] - x * v[2], x * v[1] - y * v[0]);
+    return vec3(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x);
   }
 
   lerp(v: ReadonlyVec3Like, norm: number): this {
     const { x, y, z } = this;
-    this.x = lerp(x, v[0], norm);
-    this.y = lerp(y, v[1], norm);
-    this.z = lerp(z, v[2], norm);
+    this.x = lerp(x, v.x, norm);
+    this.y = lerp(y, v.y, norm);
+    this.z = lerp(z, v.z, norm);
     return this;
   }
 
@@ -263,9 +249,9 @@ export class Vec3 extends Float32Array implements Vec {
 
   clamp(min: ReadonlyVec3Like, max: ReadonlyVec3Like): this {
     const { x, y, z } = this;
-    this.x = clamp(x, min[0], max[0]);
-    this.y = clamp(y, min[1], max[1]);
-    this.z = clamp(z, min[2], max[2]);
+    this.x = clamp(x, min.x, max.x);
+    this.y = clamp(y, min.y, max.y);
+    this.z = clamp(z, min.z, max.z);
     return this;
   }
 

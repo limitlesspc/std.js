@@ -1,84 +1,48 @@
 import { clamp, lerp } from "../funcs";
-import type { Vec } from "./vec";
 
-export type Vec4Like =
-  | [x: number, y: number, z: number, w: number]
-  | Float32Array;
-export type ReadonlyVec4Like = Readonly<Vec4Like>;
+export interface ReadonlyVec4Like {
+  readonly x: number;
+  readonly y: number;
+  readonly z: number;
+  readonly w: number;
+}
 type First = ReadonlyVec4Like | number;
 
-export class Vec4 extends Float32Array implements Vec {
-  static readonly BYTE_LENGTH = 4 * Float32Array.BYTES_PER_ELEMENT;
+export class Vec4 {
+  x: number;
+  y: number;
+  z: number;
+  w: number;
 
   constructor(x: First = 0, y?: number, z?: number, w?: number) {
-    super([0, 0, 0, 0]);
     if (typeof x === "number") {
       this.x = x;
       this.y = y ?? x;
       this.z = z ?? (y === undefined ? x : 0);
       this.w = w ?? (z === undefined ? x : 0);
     } else {
-      [this[0] = 0, this[1] = 0, this[2] = 0, this[3] = 0] = x;
+      this.x = x.x;
+      this.y = x.y;
+      this.z = x.z;
+      this.w = x.w;
     }
   }
 
-  /* prettier-ignore */ get x(): number {
-    return this[0] || 0;
-  }
-  /* prettier-ignore */ set x(value: number) {
-    this[0] = value;
-  }
-  /* prettier-ignore */ get y(): number {
-    return this[1] || 0;
-  }
-  /* prettier-ignore */ set y(value: number) {
-    this[1] = value;
-  }
-  /* prettier-ignore */ get z(): number {
-    return this[2] || 0;
-  }
-  /* prettier-ignore */ set z(value: number) {
-    this[2] = value;
-  }
-  /* prettier-ignore */ get w(): number {
-    return this[2] || 0;
-  }
-  /* prettier-ignore */ set w(value: number) {
-    this[2] = value;
-  }
+  /* prettier-ignore */ get r(): number { return this.x || 0; }
+  /* prettier-ignore */ set r(value: number) { this.x = value; }
+  /* prettier-ignore */ get g(): number { return this.y || 0; }
+  /* prettier-ignore */ set g(value: number) { this.y = value; }
+  /* prettier-ignore */ get b(): number { return this.z || 0; }
+  /* prettier-ignore */ set b(value: number) { this.z = value; }
+  /* prettier-ignore */ get a(): number { return this.z || 0; }
+  /* prettier-ignore */ set a(value: number) { this.z = value; }
 
-  /* prettier-ignore */ get r(): number {
-    return this[0] || 0;
-  }
-  /* prettier-ignore */ set r(value: number) {
-    this[0] = value;
-  }
-  /* prettier-ignore */ get g(): number {
-    return this[1] || 0;
-  }
-  /* prettier-ignore */ set g(value: number) {
-    this[1] = value;
-  }
-  /* prettier-ignore */ get b(): number {
-    return this[2] || 0;
-  }
-  /* prettier-ignore */ set b(value: number) {
-    this[2] = value;
-  }
-  /* prettier-ignore */ get a(): number {
-    return this[2] || 0;
-  }
-  /* prettier-ignore */ set a(value: number) {
-    this[2] = value;
-  }
-
-  override toString(): string {
-    const [x, y, z, w] = this;
-    return `vec4 <${x}, ${y}, ${z}, ${w}>`;
+  toString(): string {
+    return `vec4 <${this.x}, ${this.y}, ${this.z}, ${this.w}>`;
   }
 
   copy(): Vec4 {
-    return vec4(...this);
+    return vec4(this);
   }
 
   eq(x: First, y?: number, z?: number, w?: number): boolean {
@@ -90,9 +54,22 @@ export class Vec4 extends Float32Array implements Vec {
         && this.w === (w ?? (z === undefined ? x : 0))
       );
     }
-    return (
-      this.x === x[0] && this.y === x[1] && this.z === x[2] && this.w === x[3]
-    );
+    return this.x === x.x && this.y === x.y && this.z === x.z && this.w === x.w;
+  }
+
+  set(x: First, y?: number, z?: number, w?: number): this {
+    if (typeof x === "number") {
+      this.x = x;
+      this.y = y ?? x;
+      this.z = z ?? (y === undefined ? x : 0);
+      this.w = w ?? (z === undefined ? x : 0);
+    } else {
+      this.x = x.x;
+      this.y = x.y;
+      this.z = x.z;
+      this.w = x.w;
+    }
+    return this;
   }
 
   add(x: First, y?: number, z?: number, w?: number): this {
@@ -102,10 +79,10 @@ export class Vec4 extends Float32Array implements Vec {
       this.z += z ?? (y === undefined ? x : 0);
       this.w += w ?? (z === undefined ? x : 0);
     } else {
-      this.x += x[0];
-      this.y += x[1];
-      this.z += x[2];
-      this.w += x[3];
+      this.x += x.x;
+      this.y += x.y;
+      this.z += x.z;
+      this.w += x.w;
     }
     return this;
   }
@@ -121,10 +98,10 @@ export class Vec4 extends Float32Array implements Vec {
       this.z -= z ?? (y === undefined ? x : 0);
       this.w -= w ?? (z === undefined ? x : 0);
     } else {
-      this.x -= x[0];
-      this.y -= x[1];
-      this.z -= x[2];
-      this.w -= x[3];
+      this.x -= x.x;
+      this.y -= x.y;
+      this.z -= x.z;
+      this.w -= x.w;
     }
     return this;
   }
@@ -140,10 +117,10 @@ export class Vec4 extends Float32Array implements Vec {
       this.z *= z ?? (y === undefined ? x : 1);
       this.w *= w ?? (z === undefined ? x : 1);
     } else {
-      this.x *= x[0];
-      this.y *= x[1];
-      this.z *= x[2];
-      this.w *= x[3];
+      this.x *= x.x;
+      this.y *= x.y;
+      this.z *= x.z;
+      this.w *= x.w;
     }
     return this;
   }
@@ -159,10 +136,10 @@ export class Vec4 extends Float32Array implements Vec {
       this.z /= z ?? (y === undefined ? x : 1);
       this.w /= w ?? (z === undefined ? x : 1);
     } else {
-      this.x /= x[0];
-      this.y /= x[1];
-      this.z /= x[2];
-      this.w /= x[3];
+      this.x /= x.x;
+      this.y /= x.y;
+      this.z /= x.z;
+      this.w /= x.w;
     }
     return this;
   }
@@ -177,46 +154,46 @@ export class Vec4 extends Float32Array implements Vec {
     c: ReadonlyVec4Like,
   ): Vec4 {
     return vec4(
-      a[0] * b[0] + c[0],
-      a[1] * b[1] + c[1],
-      a[2] * b[2] + c[2],
-      a[3] * b[3] + c[3],
+      a.x * b.x + c.x,
+      a.y * b.y + c.y,
+      a.z * b.z + c.z,
+      a.w * b.w + c.w,
     );
   }
 
   lt(v: ReadonlyVec4Like): Vec4 {
     return vec4(
-      this.x < v[0] ? 1 : 0,
-      this.y < v[1] ? 1 : 0,
-      this.z < v[2] ? 1 : 0,
-      this.w < v[3] ? 1 : 0,
+      this.x < v.x ? 1 : 0,
+      this.y < v.y ? 1 : 0,
+      this.z < v.z ? 1 : 0,
+      this.w < v.w ? 1 : 0,
     );
   }
 
   lte(v: ReadonlyVec4Like): Vec4 {
     return vec4(
-      this.x <= v[0] ? 1 : 0,
-      this.y <= v[1] ? 1 : 0,
-      this.z <= v[2] ? 1 : 0,
-      this.w <= v[3] ? 1 : 0,
+      this.x <= v.x ? 1 : 0,
+      this.y <= v.y ? 1 : 0,
+      this.z <= v.z ? 1 : 0,
+      this.w <= v.w ? 1 : 0,
     );
   }
 
   gt(v: ReadonlyVec4Like): Vec4 {
     return vec4(
-      this.x > v[0] ? 1 : 0,
-      this.y > v[1] ? 1 : 0,
-      this.z > v[2] ? 1 : 0,
-      this.w > v[3] ? 1 : 0,
+      this.x > v.x ? 1 : 0,
+      this.y > v.y ? 1 : 0,
+      this.z > v.z ? 1 : 0,
+      this.w > v.w ? 1 : 0,
     );
   }
 
   gte(v: ReadonlyVec4Like): Vec4 {
     return vec4(
-      this.x >= v[0] ? 1 : 0,
-      this.y >= v[1] ? 1 : 0,
-      this.z >= v[2] ? 1 : 0,
-      this.w >= v[3] ? 1 : 0,
+      this.x >= v.x ? 1 : 0,
+      this.y >= v.y ? 1 : 0,
+      this.z >= v.z ? 1 : 0,
+      this.w >= v.w ? 1 : 0,
     );
   }
 
@@ -264,15 +241,15 @@ export class Vec4 extends Float32Array implements Vec {
 
   dot(v: ReadonlyVec4Like): number {
     const { x, y, z, w } = this;
-    return x * v[0] + y * v[1] + z * v[2] + w * v[3];
+    return x * v.x + y * v.y + z * v.z + w * v.w;
   }
 
   lerp(v: ReadonlyVec4Like, norm: number): this {
     const { x, y, z, w } = this;
-    this.x = lerp(x, v[0], norm);
-    this.y = lerp(y, v[1], norm);
-    this.z = lerp(z, v[2], norm);
-    this.w = lerp(w, v[3], norm);
+    this.x = lerp(x, v.x, norm);
+    this.y = lerp(y, v.y, norm);
+    this.z = lerp(z, v.z, norm);
+    this.w = lerp(w, v.w, norm);
     return this;
   }
 
@@ -282,10 +259,10 @@ export class Vec4 extends Float32Array implements Vec {
 
   clamp(min: ReadonlyVec4Like, max: ReadonlyVec4Like): this {
     const { x, y, z, w } = this;
-    this.x = clamp(x, min[0], max[0]);
-    this.y = clamp(y, min[1], max[1]);
-    this.z = clamp(z, min[2], max[2]);
-    this.w = clamp(w, min[3], max[3]);
+    this.x = clamp(x, min.x, max.x);
+    this.y = clamp(y, min.y, max.y);
+    this.z = clamp(z, min.z, max.z);
+    this.w = clamp(w, min.w, max.w);
     return this;
   }
 
