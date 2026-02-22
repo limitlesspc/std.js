@@ -18,10 +18,10 @@ export function random(max?: number): number;
  */
 export function random(min?: number, max?: number): number;
 export function random(min?: number, max?: number) {
-  if (!min) {
+  if (min === undefined) {
     return Math.random();
   }
-  if (!max) {
+  if (max === undefined) {
     return Math.random() * min;
   }
   const Min = Math.min(min, max);
