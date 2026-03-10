@@ -76,7 +76,7 @@ export function unorderedRemove<T>(array: T[], index: number): T | undefined {
  * console.log(intersection([1, 2, 3], [4, 5, 6])); // []
  * ```
  */
-export function intersection<T>(...arrays: ReadonlyArray<readonly T[]>): T[] {
+export function intersection<T>(...arrays: Array<readonly T[]>): T[] {
   const [first, ...rest] = arrays;
   if (!first) {
     return [];
@@ -360,7 +360,7 @@ export function filterByKey<T>(array: readonly T[], key: keyof T): T[] {
  * ```
  */
 export function sortByKeys<T, K extends keyof T>(
-  array: T[],
+  array: readonly T[],
   key: MaybeArray<K>,
   compare: Compare<T[K]> = ascend,
 ): T[] {

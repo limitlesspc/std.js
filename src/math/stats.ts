@@ -148,7 +148,7 @@ export function avg(iter: Iterable<number>): number {
  * console.log(median2); // 3.5
  * ```
  */
-export function median(array: number[]): number {
+export function median(array: readonly number[]): number {
   const { length } = array;
   if (!length) {
     return 0;

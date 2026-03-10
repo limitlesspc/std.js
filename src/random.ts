@@ -25,7 +25,8 @@ export function random(min?: number, max?: number) {
     return Math.random() * min;
   }
   const Min = Math.min(min, max);
-  return (Math.max(min, max) - Min) * Math.random() + Min;
+  const Max = Math.max(min, max);
+  return (Max - Min) * Math.random() + Min;
 }
 
 /**
@@ -110,7 +111,7 @@ export function choices<T>(array: ArrayLike<T>, n: uint): T[] | string {
  * @param n number of items to pick
  * @returns an array containing the random items
  */
-export function sample<T>(array: ArrayLike<T> & Iterable<T>, n: uint): T[] {
+export function sample<T>(array: readonly T[], n: uint): T[] {
   const copy = [...array];
   const result = Array.from<T>({ length: n });
   for (let i = 0; i < n; i++) {
