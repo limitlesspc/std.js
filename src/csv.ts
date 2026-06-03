@@ -1,4 +1,4 @@
-const specialCharRegex = /",\n/;
+const specialCharRegex = /[\n",]/;
 
 export function formatCsv(rows: any[][]) {
   return rows
