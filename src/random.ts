@@ -113,13 +113,13 @@ export function choices<T>(array: ArrayLike<T>, n: uint): T[] | string {
  */
 export function sample<T>(array: readonly T[], n: uint): T[] {
   const copy = [...array];
-  const result = Array.from<T>({ length: n });
+  const results: T[] = [];
   for (let i = 0; i < n; i++) {
     const index = randomInt(copy.length - 1);
     const item = unorderedRemove(copy, index);
     if (item) {
-      result[i] = item;
+      results.push(item);
     }
   }
-  return result;
+  return results;
 }
