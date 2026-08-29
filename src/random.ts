@@ -115,9 +115,9 @@ export function sample<T>(array: readonly T[], n: uint): T[] {
   const copy = [...array];
   const results: T[] = [];
   for (let i = 0; i < n; i++) {
-    const index = randomInt(copy.length - 1);
-    const item = unorderedRemove(copy, index);
-    if (item) {
+    if (copy.length > 0) {
+      const index = randomInt(copy.length - 1);
+      const item = unorderedRemove(copy, index)!;
       results.push(item);
     }
   }
