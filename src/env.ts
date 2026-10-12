@@ -4,6 +4,10 @@ export function parseEnv(env: string): Record<string, string> {
   const vars: Record<string, string> = {};
 
   for (const line of env.split("\n")) {
+    if (line.startsWith("#")) {
+      continue;
+    }
+
     const [name, valueStr] = splitOnce(line, "=");
     if (name.length === 0) {
       continue;

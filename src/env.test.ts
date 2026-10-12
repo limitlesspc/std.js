@@ -50,6 +50,22 @@ TEST=hello
     },
   },
   {
+    name: "comments",
+    text: `
+# test
+TEST=hello
+DEV='1\\n2'
+
+# output directory
+DIR=/dev/null
+`,
+    data: {
+      TEST: "hello",
+      DEV: "1\n2",
+      DIR: "/dev/null",
+    },
+  },
+  {
     name: "multiple vars",
     text: `
 TEST=hello
