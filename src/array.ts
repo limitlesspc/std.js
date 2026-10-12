@@ -270,12 +270,14 @@ export function dedupe<T>(array: Iterable<T>): T[] {
  * // "dog",
  * // ]
  */
-export function dedupeBy<T>(array: Iterable<T>, key: (item: T) => any): T[] {
+export function dedupeBy<T, U>(
+  array: Iterable<T>,
+  callback: (item: T) => U,
+): T[] {
   const result: T[] = [];
-  const seen = new Set();
+  const seen = new Set<U>();
   for (const item of array) {
-    // eslint-disable-next-line ts/no-unsafe-assignment
-    const value = key(item);
+    const value = callback(item);
     if (!seen.has(value)) {
       result.push(item);
       seen.add(value);

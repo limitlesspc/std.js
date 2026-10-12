@@ -1,20 +1,13 @@
 import { reverseCurry } from "../fn";
-import type { AnyRecord } from "../types";
 
 export const associateBy: {
-  <T extends AnyRecord, K extends keyof T>(
-    first: Iterable<T>,
-    key: K,
-  ): Map<T[K], T>;
-  <T extends AnyRecord, K extends keyof T>(
-    key: K,
-  ): (first: Iterable<T>) => Map<T[K], T>;
-} = reverseCurry(
-  <T extends AnyRecord, K extends keyof T>(array: Iterable<T>, key: K) => {
-    const map = new Map<T[K], T>();
-    for (const item of array) {
-      map[item[key]] = item;
-    }
-    return map;
-  },
-);
+  <T, U>(first: Iterable<T>, callback: (item: T) => U): Map<U, T>;
+  <T, U>(callback: (item: T) => U): (first: Iterable<T>) => Map<U, T>;
+} = reverseCurry(<T, U>(array: Iterable<T>, callback: (item: T) => U) => {
+  const map = new Map<U, T>();
+  for (const item of array) {
+    const key = callback(item);
+    map.set(key, item);
+  }
+  return map;
+});
