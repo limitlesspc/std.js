@@ -1,5 +1,5 @@
 import { reverseCurry } from "../fn";
-import type { AnyRecord, NonFalsy } from "../types";
+import type { NonFalsy } from "../types";
 
 /**
  * Allows values from an iterable based on a predicate function

@@ -4,7 +4,7 @@
  */
 
 /**
- * Determines if an object has a property. This is simply a type-safe wrapper around `Object.prototype.hasOwnProperty`
+ * Determines if an object has a property. This is simply a type-safe wrapper around `Object.hasOwn`
  * @param obj The object
  * @param key The property key
  * @returns true if the object has the property
@@ -15,10 +15,9 @@
  * console.log(hasOwn(obj, "c")); // false
  * ```
  */
-export const hasOwn = <T, K extends PropertyKey>(
+export const hasOwn = <T extends object, K extends PropertyKey>(
   obj: T,
   key: K,
-  // @ts-expect-error allow anything to be passed into Object.hasOwn
 ): obj is T & { [key in K]: unknown } => Object.hasOwn(obj, key);
 
 /**
@@ -37,6 +36,9 @@ export function shallowEquals<A, B>(a: A, b: B): boolean {
   // @ts-expect-error a and b might be the same value
   if (a === b) {
     return true;
+  }
+  if (a == null || b == null) {
+    return false;
   }
   for (const key in a) {
     if (hasOwn(a, key) && !hasOwn(b, key)) {
