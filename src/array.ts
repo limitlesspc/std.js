@@ -4,7 +4,6 @@
  */
 
 import { ascend, type Compare } from "./cmp";
-import { zip } from "./iter";
 import type { Indexable, MaybeArray } from "./types";
 
 /**
@@ -198,29 +197,6 @@ export function union<T>(...arrays: Array<Iterable<T>>): T[] {
     }
   }
   return result;
-}
-
-/**
- * Test if two arrays contain the same items in the same order
- * @param a
- * @param b
- * @returns if the arrays are equal
- * @example
- * ```ts
- * console.log(equal([1, 2, 3], [1, 2, 3])); // true
- * console.log(equal([1, 2, 3], [3, 2, 1])); // false
- * ```
- */
-export function equal<T>(a: readonly T[], b: readonly T[]): boolean {
-  if (a.length !== b.length) {
-    return false;
-  }
-  for (const [item1, item2] of zip(a, b)) {
-    if (item1 !== item2) {
-      return false;
-    }
-  }
-  return true;
 }
 
 /**
