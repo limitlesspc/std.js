@@ -287,38 +287,6 @@ export function dedupeBy<T, U>(
 }
 
 /**
- * Returns a new array with items with a unique key
- * @param array
- * @param key
- * @example
- * ```ts
- * const array = [
- *   { id: 1, name: "Alice" },
- *   { id: 2, name: "Bob" },
- *   { id: 1, name: "Charlie" },
- *   { id: 3, name: "David" },
- *   { id: 2, name: "Eve" },
- *   { id: 4, name: "Frank" },
- * ];
- * console.log(dedupeByKey(array, "id")); // [
- * // { id: 1, name: "Alice" },
- * // { id: 2, name: "Bob" },
- * // { id: 3, name: "David" },
- * // { id: 4, name: "Frank" }
- * // ]
- */
-export function dedupeByKey<T extends { [K in keyof T]: T[K] }>(
-  array: Iterable<T>,
-  key: keyof T,
-): T[] {
-  return dedupeBy(array, x => x[key]);
-}
-
-export function filterByKey<T>(array: readonly T[], key: keyof T): T[] {
-  return array.filter(item => item[key]);
-}
-
-/**
  * Sorts an array of objects by the value of a key
  * @param array
  * @param key

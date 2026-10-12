@@ -33,17 +33,3 @@ export const filter: {
     }
   }
 });
-
-export const filterByKey: {
-  <T extends AnyRecord>(iter: Iterable<T>, key: keyof T): Generator<T>;
-  <T extends AnyRecord>(key: keyof T): (iter: Iterable<T>) => Generator<T>;
-} = reverseCurry(function* filterByKey<T extends AnyRecord>(
-  iter: Iterable<T>,
-  key: keyof T,
-) {
-  for (const value of iter) {
-    if (value[key]) {
-      yield value;
-    }
-  }
-});
