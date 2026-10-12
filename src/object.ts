@@ -141,24 +141,67 @@ export function value2Keys<K extends string, T extends string>(
 }
 
 /**
+ * Maps the keys and values of an object to a new object
+ * @param obj The object
+ * @param callback The mapping function
+ * @returns A new object with the mapped entries
+ * @example
+ * ```ts
+ * const obj = { a: 1, b: 2 };
+ * const result = objectMap(obj, ([key, value]) => [`num${key}`, value * 2]);
+ * console.log(result); // { numa: 2, numb: 4 }
+ * ```
+ */
+export function objectMap<T, NewKey extends PropertyKey, NewValue>(
+  obj: T,
+  callback: (value: Entry<T>) => [NewKey, NewValue],
+): { [K in NewKey]: NewValue } {
+  return objectFromEntries(
+    objectEntries(obj).map(([key, value]) => callback([key, value])),
+  );
+}
+
+/**
+ * Maps the keys of an object to a new object
+ * @param obj The object
+ * @param callback The mapping function
+ * @returns A new object with the mapped keys
+ * @example
+ * ```ts
+ * const obj = { a: 1, b: 2 };
+ * const result = objectMapKeys(obj, ([key, value]) => `num${key}`);
+ * console.log(result); // { numa: 1, numb: 2 }
+ * ```
+ */
+export function objectMapKeys<T, U extends PropertyKey>(
+  obj: T,
+  callback: (value: Entry<T>) => U,
+): { [K in U]: T[keyof T] } {
+  return objectFromEntries(
+    // @ts-expect-error have to nudge the type system here
+    objectEntries(obj).map(([key, value]) => [callback([key, value]), value]),
+  ) as { [K in U]: T[keyof T] };
+}
+
+/**
  * Maps the values of an object to a new object
  * @param obj The object
- * @param fn The mapping function
+ * @param callback The mapping function
  * @returns A new object with the mapped values
  * @example
  * ```ts
  * const obj = { a: 1, b: 2 };
- * const result = objectMap(obj, ([key, value]) => [key, value * 2]);
+ * const result = objectMapValues(obj, ([key, value]) => value * 2);
  * console.log(result); // { a: 2, b: 4 }
  * ```
  */
-export function objectMap<T, U>(
+export function objectMapValues<T, U>(
   obj: T,
-  fn: (value: Entry<T>) => U,
+  callback: (value: Entry<T>) => U,
 ): { [K in keyof T]: U } {
   return objectFromEntries(
     // @ts-expect-error have to nudge the type system here
-    objectEntries(obj).map(([key, value]) => [key, fn([key, value])]),
+    objectEntries(obj).map(([key, value]) => [key, callback([key, value])]),
   ) as { [K in keyof T]: U };
 }
 
