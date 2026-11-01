@@ -98,11 +98,11 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@limitlesspc/eslint-config": "^0.18.4",
+    "@limitlesspc/eslint-config": "^0.24.0",
     "@limitlesspc/prettier-config": "^1.2.1",
     "@vitest/coverage-v8": "^4.0.16",
     "bumpp": "^10.3.2",
-    "eslint": "^9.39.2",
+    "eslint": "^9.39.5",
     "prettier": "^3.7.4",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3",
