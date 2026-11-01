@@ -15,6 +15,7 @@ export class UnorderedArray<T> extends Array<T> {
    * @param items Elements to insert at the end of the array.
    */
   override unshift(...items: T[]): uint {
+    // eslint-disable-next-line unicorn/no-return-array-push
     return super.push(...items);
   }
 

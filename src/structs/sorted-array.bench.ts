@@ -5,6 +5,7 @@ const array = Array.from({ length: 1_000_000 }, (_, i) => i);
 const sortedArray = new SortedArray([...array]);
 
 bench("linear", () => {
+  // eslint-disable-next-line unicorn/no-unused-builtin-method-return
   array.includes(500_001);
 });
 

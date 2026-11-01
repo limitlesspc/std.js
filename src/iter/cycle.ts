@@ -9,7 +9,7 @@ export function* cycle<T>(iter: Iterable<T>): Iterator<T> {
     values.push(value);
   }
 
-  while (values.length) {
+  while (values.length > 0) {
     for (const value of values) {
       yield value;
     }

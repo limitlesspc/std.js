@@ -24,8 +24,8 @@ describe("remove max until empty", () => {
   bench(
     "linear",
     () => {
-      while (array.length) {
-        let max = Number.NEGATIVE_INFINITY;
+      while (array.length > 0) {
+        let max = -Infinity;
         let maxIndex = -1;
         for (const [i, element] of array.entries()) {
           const value = element;

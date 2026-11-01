@@ -17,21 +17,18 @@ const numbers = [10, 34, 55, 2, 7, -8];
 
 test("min", () => {
   expect(min(numbers)).toBe(-8);
-  expect(min([])).toBe(Number.POSITIVE_INFINITY);
+  expect(min([])).toBe(Infinity);
 });
 
 test("max", () => {
   expect(max(numbers)).toBe(55);
-  expect(max([])).toBe(Number.NEGATIVE_INFINITY);
+  expect(max([])).toBe(-Infinity);
 });
 
 test("minmax", () => {
   expect(minmax(numbers)).toEqual([-8, 55]);
   expect(minmax([5])).toEqual([5, 5]);
-  expect(minmax([])).toEqual([
-    Number.POSITIVE_INFINITY,
-    Number.NEGATIVE_INFINITY,
-  ]);
+  expect(minmax([])).toEqual([Infinity, -Infinity]);
 });
 
 test("sum", () => {
@@ -46,7 +43,7 @@ test("product", () => {
 
 test("average", () => {
   expect(avg(numbers)).toBeCloseTo(16.667);
-  expect(avg([])).toBe(Number.NaN);
+  expect(avg([])).toBe(NaN);
 });
 
 test("average", () => {

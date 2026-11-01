@@ -5,7 +5,7 @@ export function formatCsv(rows: any[][]): string {
     .map(row =>
       row
         .map(value => {
-          const str = `${value}`;
+          const str = String(value);
           if (specialCharRegex.test(str)) {
             return `"${str.replaceAll('"', '""')}"`;
           }
@@ -17,11 +17,12 @@ export function formatCsv(rows: any[][]): string {
 }
 
 export function parseCsv(csv: string): string[][] {
+  const data: string[][] = [];
+
   let inStr = false;
   let char = "";
   let cell = "";
   let row: string[] = [];
-  const data: string[][] = [];
   for (let i = 0; i < csv.length; i++) {
     char = csv[i]!;
     if (!inStr) {
@@ -63,5 +64,6 @@ export function parseCsv(csv: string): string[][] {
   if (row.length > 0) {
     data.push(row);
   }
+
   return data;
 }

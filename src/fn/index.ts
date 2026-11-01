@@ -63,7 +63,9 @@ export function memo<T>(fn: () => T): Memo<T> {
     called = true;
     return cache;
   };
-  memoized.invalidate = () => (called = false);
+  memoized.invalidate = () => {
+    called = false;
+  };
   return memoized;
 }
 

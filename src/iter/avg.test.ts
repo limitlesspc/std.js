@@ -5,7 +5,7 @@ import { expect, test } from "vitest";
 test("zero items", () => {
   const iter: number[] = [];
   const average = avg(iter);
-  expect(average).toBe(Number.NaN);
+  expect(average).toBe(NaN);
 });
 
 test("one item", () => {

@@ -89,7 +89,7 @@ export function choices(string: string, n: uint): string;
  */
 export function choices<T>(array: ArrayLike<T>, n: uint): T[];
 export function choices<T>(array: ArrayLike<T>, n: uint): T[] | string {
-  if (!array.length || !n) {
+  if (array.length === 0 || !n) {
     return [];
   }
   if (typeof array === "string") {

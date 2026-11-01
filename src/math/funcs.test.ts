@@ -7,8 +7,8 @@ test("isNumber", () => {
   expect(isNumber(27));
   expect(isNumber(-5));
   expect(isNumber(4.8));
-  expect(isNumber(Number.POSITIVE_INFINITY));
-  expect(!isNumber(Number.NaN));
+  expect(isNumber(Infinity));
+  expect(!isNumber(NaN));
   expect(!isNumber(""));
   expect(!isNumber("4"));
   expect(!isNumber({}));

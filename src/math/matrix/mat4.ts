@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-unreadable-array-destructuring */
 import type { int } from "../../types";
 import { closeTo } from "../funcs";
 import { mat3 } from "./mat3";

@@ -23,7 +23,7 @@ export const chunk: {
     }
   }
 
-  if (result.length) {
+  if (result.length > 0) {
     yield result as Repeat<T, N>;
   }
 });

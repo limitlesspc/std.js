@@ -26,10 +26,9 @@ export const TEBIBYTE = 1024 * GIBIBYTE;
  * ```
  */
 export function hex(buffer: Iterable<uint>): string {
-  const hexCodes: string[] = [];
-  for (const element of buffer) {
-    hexCodes.push(element.toString(16).padStart(2, "0"));
-  }
+  const hexCodes = Array.from(buffer, element =>
+    element.toString(16).padStart(2, "0"),
+  );
   return hexCodes.join("");
 }
 

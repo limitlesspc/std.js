@@ -18,7 +18,7 @@ import { collect, filter, map } from "../iter";
  * ```
  */
 export function min(iter: Iterable<number>): number {
-  let min = Number.POSITIVE_INFINITY;
+  let min = Infinity;
   for (const value of iter) {
     if (value < min) {
       min = value;
@@ -39,7 +39,7 @@ export function min(iter: Iterable<number>): number {
  * ```
  */
 export function max(iter: Iterable<number>): number {
-  let max = Number.NEGATIVE_INFINITY;
+  let max = -Infinity;
   for (const value of iter) {
     if (value > max) {
       max = value;
@@ -61,8 +61,8 @@ export function max(iter: Iterable<number>): number {
  * ```
  */
 export function minmax(iter: Iterable<number>): [min: number, max: number] {
-  let min = Number.POSITIVE_INFINITY;
-  let max = Number.NEGATIVE_INFINITY;
+  let min = Infinity;
+  let max = -Infinity;
   for (const value of iter) {
     if (value < min) {
       min = value;

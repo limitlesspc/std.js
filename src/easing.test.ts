@@ -1,17 +1,17 @@
 import {
+  cubicIn,
+  cubicInOut,
+  cubicOut,
   linear,
   quadIn,
-  quadOut,
   quadInOut,
-  cubicIn,
-  cubicOut,
-  cubicInOut,
+  quadOut,
   quartIn,
-  quartOut,
   quartInOut,
+  quartOut,
   quintIn,
-  quintOut,
   quintInOut,
+  quintOut,
 } from "./easing";
 import { expect, test } from "vitest";
 
