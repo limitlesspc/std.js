@@ -18,7 +18,7 @@ export function pluralize<S extends string, P extends string>(
   n: number,
   plural?: P,
 ): (S | `${S}s`) | (S | P) {
-  if (n === 1) {
+  if (Math.abs(n) === 1) {
     return word;
   }
   if (plural) {
