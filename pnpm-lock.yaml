@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@limitlesspc/eslint-config':
-        specifier: ^0.24.1
-        version: 0.24.1(@typescript-eslint/typescript-estree@8.72.1(typescript@5.9.3))(@typescript-eslint/utils@8.72.1(eslint@9.39.5(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.5(jiti@2.6.1))(ts-declaration-location@1.0.7(typescript@5.9.3))(typescript@5.9.3)
+        specifier: ^0.24.2
+        version: 0.24.2(@typescript-eslint/typescript-estree@8.72.1(typescript@5.9.3))(@typescript-eslint/utils@8.72.1(eslint@9.39.5(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.5(jiti@2.6.1))(ts-declaration-location@1.0.7(typescript@5.9.3))(typescript@5.9.3)
       '@limitlesspc/prettier-config':
         specifier: ^1.2.1
         version: 1.2.1(prettier@3.7.4)
@@ -355,8 +355,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@limitlesspc/eslint-config@0.24.1':
-    resolution: {integrity: sha512-8PUKCiDRdhBT8TMOxK1pNGQhvGJewk/Uo3j9tEjq6xq6nLeMSScOHcVVGP2cYJiu76x6/TIDi2ekvqh33FK37A==}
+  '@limitlesspc/eslint-config@0.24.2':
+    resolution: {integrity: sha512-8ropZZh/SkSt8tJMio5wq//MiJqlUYPvV9kY/sxnDOWmaKdLdCofFZ/Hm6Ivr4yx1/9OAcrCMJ8Ruy97m519jQ==}
     peerDependencies:
       eslint: ^9.10.0 || ^10.0.0
       eslint-plugin-erasable-syntax-only: ^0.7.1
@@ -2099,7 +2099,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@limitlesspc/eslint-config@0.24.1(@typescript-eslint/typescript-estree@8.72.1(typescript@5.9.3))(@typescript-eslint/utils@8.72.1(eslint@9.39.5(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.5(jiti@2.6.1))(ts-declaration-location@1.0.7(typescript@5.9.3))(typescript@5.9.3)':
+  '@limitlesspc/eslint-config@0.24.2(@typescript-eslint/typescript-estree@8.72.1(typescript@5.9.3))(@typescript-eslint/utils@8.72.1(eslint@9.39.5(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.5(jiti@2.6.1))(ts-declaration-location@1.0.7(typescript@5.9.3))(typescript@5.9.3)':
     dependencies:
       '@antfu/install-pkg': 2.1.0
       '@clack/prompts': 1.8.1
